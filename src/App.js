@@ -1,11 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
+
+
+
 import {Routes,Route } from 'react-router-dom';
 import Home from './Components/layout/home';
 import Phone from './Components/phone';
 import FoundList from './Components/I_found';
 import LostList from './Components/I_lost';
 import NavBar from './Components/layout/navbar';
+import UserLogin from './Components/UserConnection/UserLogin';
+import UserSignUp from './Components/UserConnection/UserSignUp';
 
 function App() {
   return <>
@@ -16,6 +22,11 @@ function App() {
       <Route path='/phone' element= {<Phone />} ></Route>
       <Route path='/found' element= {<FoundList />} ></Route>
       <Route path='/lost' element= {<LostList />} ></Route>
+
+      <Route path='/UserLogin' element= {<UserLogin />} ></Route>
+      <Route path='/UserSignUp' element= {<UserSignUp />} ></Route>
+      
+
     </Routes>
   
   
