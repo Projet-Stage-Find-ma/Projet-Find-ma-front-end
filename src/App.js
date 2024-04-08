@@ -12,6 +12,7 @@ import LostList from './Components/I_lost';
 import NavBar from './Components/layout/navbar';
 import UserLogin from './Components/UserConnection/UserLogin';
 import UserSignUp from './Components/UserConnection/UserSignUp';
+import Footer from './Components/layout/footer';
 
 function App() {
   return <>
@@ -28,6 +29,8 @@ function App() {
       
 
     </Routes>
+
+    <Footer></Footer>
   
   
   </>

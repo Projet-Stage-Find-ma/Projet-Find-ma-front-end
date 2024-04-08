@@ -9,8 +9,8 @@ export default function NavBar()
 
     return <nav className="container-fluid">
 
-        <div class="row">
-            <h1 className="col-12 col-md-2 col-lg-2" ><Link className="Logo" to='/'>Find.ma</Link></h1>
+        <div class="row align-item-center">
+        <Link className="Logo col-md-2 col-sm-12 Logo " to='/'><h1 className="" >Find.ma</h1></Link>
 
             <div className="row col-12 col-md-10 col-lg-6 pagesLink">
                 <Link className=" col-4 link" to="/phone">Telephone</Link>

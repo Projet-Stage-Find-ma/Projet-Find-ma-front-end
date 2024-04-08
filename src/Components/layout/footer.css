@@ -1,0 +1,44 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap');
+
+footer
+{
+    background-color: rgb(151, 204, 232);
+}
+
+   
+
+.copyright
+{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.contact
+{
+
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 10px;
+
+
+}
+
+.contactLabel
+{
+    font-family: 'Jura';
+    font-weight: bolder;
+}
+
+.contactInfo
+{
+    margin-left: 20px;
+    font-family: "Jura";
+
+
+}

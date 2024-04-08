@@ -10,18 +10,19 @@ nav{
 
 }
 
-h1
-{
-    text-align: center;
 
-   
-}
 
 .Logo
 {
+    
     font-family: 'Krona One';
     text-decoration: none;
     color: black;
+    margin-top: 13px;
+
+   text-align: center;
+ 
+   
 } 
 .link
 {
@@ -30,8 +31,6 @@ h1
     font-family: 'Inter';
     text-align: center;
 
-   
-   
 
 }
 
@@ -41,10 +40,6 @@ h1
    
   display: flex;
   align-items: center;
-  
-
-
-
     
 }
 
