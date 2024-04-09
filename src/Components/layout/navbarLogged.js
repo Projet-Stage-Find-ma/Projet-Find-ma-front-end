@@ -3,7 +3,7 @@ import './navbar.css'
 import UserMenu from "./userMenu"
 
 
-export default function NavBar()
+export default function NavBarLogged()
 {
 
 
@@ -19,14 +19,9 @@ export default function NavBar()
 
         </div>
 
-       
-        <div className="connectionLinks">
-            <Link className="connectionLink" to="/UserLogin">Se connecter</Link>
-            <Link className="connectionLink" to="/UserSignUp">S'inscrire</Link>
-        </div>
+    
 
-
-       
+        <UserMenu/>
            
      
     </nav>

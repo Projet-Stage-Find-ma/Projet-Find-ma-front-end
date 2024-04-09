@@ -13,10 +13,19 @@ import NavBar from './Components/layout/navbar';
 import UserLogin from './Components/UserConnection/UserLogin';
 import UserSignUp from './Components/UserConnection/UserSignUp';
 import Footer from './Components/layout/footer';
+import UserProfile from './Components/UserProfil/UserProfile';
+import UserPhones from './Components/UserProfil/UserPhones';
+import UserObjects from './Components/UserProfil/UserObjects';
+import NavBarLogged from './Components/layout/navbarLogged';
 
 function App() {
   return <>
     <NavBar></NavBar>
+    <div style={{height:30}}>
+
+    </div>
+    <NavBarLogged></NavBarLogged>
+
     
     <Routes>
       <Route path='/' element= {<Home />} ></Route>
@@ -26,6 +35,11 @@ function App() {
 
       <Route path='/UserLogin' element= {<UserLogin />} ></Route>
       <Route path='/UserSignUp' element= {<UserSignUp />} ></Route>
+
+      <Route path='/UserProfile' element={<UserProfile/>} ></Route>
+      <Route path='/UserPhones' element= {<UserPhones/>} ></Route>
+      <Route path='/UserObjects' element= {<UserObjects />} ></Route>
+     
       
 
     </Routes>

@@ -1,0 +1,178 @@
+
+
+.menu {
+    position: relative;
+    width: 20%;
+    
+  }
+
+
+  
+  .linksList {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 5%;
+    background-color: rgb(151, 204, 232);
+    border: none;
+    padding: 5px;
+  }
+  
+  .menu:hover .linksList {
+    display: block;
+  }
+  
+  .userProfileLinks {
+    display: block;
+    margin: 0;
+    text-decoration: none;
+    color: #333;
+    padding: 5px ;
+    text-align: center;
+    border: none;
+  
+  }
+  
+   
+  .userProfileLinks:hover {
+    
+    background-color:white;
+  }
+  /* Adjust styles as needed */
+  
+  @media screen and (min-width:1200px) {
+    .menu
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       
+    }
+
+    .linksList {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 25%;
+       
+        
+        padding: 5px;
+        text-align: center;
+        width:175px;
+      }
+      
+    
+    
+
+}
+
+
+@media screen and ( max-width:1199px) and (min-width:992px) {
+
+    .menu
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       
+    }
+
+    .linksList {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 25%;
+   
+        
+        padding: 5px;
+        text-align: center;
+        width:175px;
+      }
+      
+    
+
+}
+
+
+@media screen and ( max-width:992px) and (min-width:768px) {
+
+    .menu
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       
+    }
+
+    .linksList {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 25%;
+       
+        
+        padding: 5px;
+        text-align: center;
+        width:175px;
+      }
+      
+    
+
+}
+
+
+@media screen and ( max-width:768px) and (min-width:576px) {
+
+    .menu
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 200px;
+       
+    }
+
+    .linksList {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 10%;
+        
+        
+        padding: 5px;
+        text-align: center;
+        width:175px;
+      }
+      
+    
+
+}
+
+@media screen and ( max-width:576px) {
+
+    .menu
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 200px;
+       
+    }
+
+    .linksList {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 10%;
+       
+        
+        padding: 5px;
+        text-align: center;
+        width:175px;
+      }
+
+     
+      
+    
+
+}

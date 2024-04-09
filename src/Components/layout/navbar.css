@@ -1,72 +1,194 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Krona+One&display=swap');
 
 
-nav{
+nav {
     background-color: rgb(151, 204, 232);
-  
-
-
 }
 
-
-
-.Logo
+.LogoLink
 {
-    
+    text-decoration: none;
+    color: black;
     font-family: 'Krona One';
+}
+.NavLinks {
     text-decoration: none;
     color: black;
-    margin-top: 13px;
 
-   text-align: center;
- 
-   
-} 
-.link
-{
-    text-decoration: none;
-    color: black;
-    font-family: 'Inter';
-    text-align: center;
-
-
-}
-
-.pagesLink
-{
-   
-   
-  display: flex;
-  align-items: center;
-    
-}
-
-.connectionLinks
-{
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: nowrap;
-   
-  
 
 }
 
 .connectionLink
 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: aliceblue;
     text-decoration: none;
-    font-family: 'Inter';
-    text-align: center;
     color: black;
-    display: inline-block;
-    background-color: white;
-    border-radius: 20px;
-    width: 150px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    font-family: 'Inter';
+    width: 50%;
+    margin-right: 2%;
+    text-align: center;
+    height: 30px;
+    border-radius: 6px;
+}
+
+@media screen and (min-width:1200px) {
+    nav {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .pagesLinks
+    {
+        display: flex;
+        justify-content: space-evenly;
+        width: 40%;
+    }
+
+    .connectionLinks
+    {
+
+        display: flex;
+        justify-content: space-evenly;
+        width: 20%;
+    }
+
+
+}
+
+
+
+@media screen and ( max-width:1199px) and (min-width:992px) {
+    nav {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+
+    }
+
+    .pagesLinks
+    {
+        display: flex;
+        justify-content: space-evenly;
+
+        width: 40%;
+    }
+
+    .connectionLinks
+    {
+
+        display: flex;
+        justify-content: space-evenly;
+        width: 20%;
+    }
+
+
+}
+
+
+
+@media screen and ( max-width:992px) and (min-width:768px) {
+    nav {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+
+    }
+
+    .pagesLinks
+    {
+        display: flex;
+        justify-content: space-evenly;
+
+        width: 40%;
+    }
+
+    .connectionLinks
+    {
+
+        display: flex;
+        justify-content: space-evenly;
+        width: 40%;
+    }
+
+
+}
+
+
+
+@media screen and ( max-width:768px) and (min-width:576px) {
+    nav {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+
+    }
+
+    .pagesLinks
+    {
+        display: flex;
+        justify-content: space-evenly;
+
+        width:100%;
+        margin-bottom: 10px;
+    }
+
+    .connectionLinks
+    {
+
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+        margin-bottom: 10px;
+        margin-left: 10px;
+        
+    }
+
+
+}
+
+
+@media screen and ( max-width:576px) {
+    nav {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+      
+
+    }
+
+    .pagesLinks
+    {
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+        align-items: center;
+        width:100%;
+        margin-bottom: 10px;
+    }
+
+    .NavLinks
+    {
+        margin-top: 10px;
+    }
+
+    .connectionLinks
+    {
+
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+        margin-bottom: 10px;
+        margin-left: 10px;
+        
+    }
+
 
 }
