@@ -21,10 +21,7 @@ import NavBarLogged from './Components/layout/navbarLogged';
 function App() {
   return <>
     <NavBar></NavBar>
-    <div style={{height:30}}>
-
-    </div>
-    <NavBarLogged></NavBarLogged>
+    
 
     
     <Routes>
