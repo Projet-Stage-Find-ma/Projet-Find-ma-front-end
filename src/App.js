@@ -16,6 +16,7 @@ import UserProfile from './Components/UserProfil/UserProfile';
 import UserPhones from './Components/UserProfil/UserPhones';
 import UserObjects from './Components/UserProfil/UserObjects';
 import NavBarLogged from './Components/layout/navbarLogged';
+import ItemDetails from './Components/Items/itemDetails';
 
 function App() {
   return <>
@@ -28,6 +29,7 @@ function App() {
       <Route path='/phone' element= {<Phone />} ></Route>
      
       <Route path='/itemsList/:type' element= {<ItemsSearchList />} ></Route>
+      <Route path='/item/:id' element={<ItemDetails/>}></Route>
 
       <Route path='/UserLogin' element= {<UserLogin />} ></Route>
       <Route path='/UserSignUp' element= {<UserSignUp />} ></Route>
