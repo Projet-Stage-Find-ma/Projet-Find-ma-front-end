@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+
+
+.container1Acceuil
+{
+    
+    display: flex;
+     padding: 100px;
+   
+     align-items: center;
+}
+.Part1Container1{
+    width:50%;
+    margin-right: 180px;
+    text-align: center;
+}
+
+.Part2Container1 h1{
+    font-size: 75px;
+    margin-top: 40px;
+    color: #97CCE8;
+    font-family: "Krona One", sans-serif;
+    font-weight: 500;
+   
+}
+.Part1Container1 p{
+    margin-top: 50px;
+    font-weight: 500;
+}
+
+.Part1Container1 h1{
+    font-size: 40px;
+    font-weight:bold;
+}
+
+.Part1Container1 button
+{
+    background-color: #97CCE8;
+    border: #97CCE8;
+    margin-right: 50px;
+    margin-top: 10px;
+    border-radius: 20px;
+    padding: 10px;
+    width: 160px;
+    font-size: 12px;
+    color: white;
+    font-weight: 500;
+
+}
+.Container2Acceuil{
+    background-color: #97CCE8;
+    padding: 10px;
+    
+}
+.Container2Acceuil .col-3{
+   background-color: white;
+   width:400px;
+   font-size: 12px;
+   text-align: center;
+   
+}
+
+
+.Container2Acceuil h1{
+    
+    text-align: center;
+    margin-bottom: 55px;
+    margin-top: 25px;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: "Krona One", sans-serif;
+}

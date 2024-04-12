@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+body {
+    
+ 
+    margin: 0;
+    padding: 0;
+  }
+  
+  .formSignup {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 100px;
+  }
+  
+  .formSignup h1 {
+    text-align: center;
+    margin-bottom: 30px;
+   font-size: 45px;
+    font-weight: bold;
+  }
+  
+  .formSignup form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .formSignup .name-group {
+    display: flex;
+    
+    
+  }
+  
+  .formSignup .name-group input {
+    flex: 1;
+    margin-right: 10px;
+    width: 100%;
+    
+  }
+  
+  .formSignup input[type="text"],
+  .formSignup input[type="password"] {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .formSignup button {
+    background-color: #5db7e7;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 270px;
+    font-weight: bold;
+    margin-left: 115px;
+    margin-bottom: 20px;
+  }
+  
+  .formSignup button:hover {
+    background-color: #0056b3;
+  }
+  
+  .formSignup a {
+    text-align: center;
+    margin-top: 10px;
+    color: #5db7e7;
+    text-decoration: none;
+  }
+  
+  .formSignup a:hover {
+    text-decoration: underline;
+  }
+  .mylogo
+  {
+      font-family: "Krona One", sans-serif;
+      margin:30px ;
+  } 
+  .error{
+    color: red;
+    margin-left: 10px;
+    margin-top: 0px;
+   
+
+}
+
+.errorName{
+  display: flex;
+  justify-content: space-between; 
+  margin-top: 5px; 
+ 
+}

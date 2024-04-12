@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+
+.LoginUserForm {
+    max-width: 500px;
+    margin-top: 6%;
+    margin-left: 35%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 100px;
+}
+
+.LoginUserForm h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    
+}
+
+.LoginUserForm form input {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px; 
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-sizing: border-box;
+
+}
+
+.LoginUserForm form button {
+    width: 70%;
+    padding: 15px; 
+    border: none;
+    border-radius: 20px;
+    background-color: #5db7e7;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 70px;
+    margin-bottom:15px ;
+    font-weight: bold;
+}
+
+.LoginUserForm form button:hover {
+    background-color: #5db7e7;
+}
+
+ a {
+    display: block;
+   font-weight: bold;
+    margin-top: 15px; 
+    text-decoration: none;
+    margin-bottom:20px ;
+    color: #5db7e7;
+}
+
+
+.error{
+    color: red;
+    margin-left: 10px;
+
+}
+.lien2{
+    text-align: center;
+}

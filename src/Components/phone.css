@@ -1,0 +1,89 @@
+.Ajout{
+    float: right;
+    margin-right:10px;
+    background-color: #97CCE8;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: #97CCE8;
+    color: white;
+    margin-top: 50px;
+    
+ }
+ .containerPhone{
+     
+     display: flex;
+     flex-direction: column;
+    
+     align-items: center;
+     padding-top:17%;
+     padding-left: 16%;
+     padding-bottom: 20%;
+   
+     
+ }
+ 
+ .myform{
+     padding: 50px;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     margin-top: 0;
+    
+   
+ }
+ 
+ .myform input{
+     width: 900px;
+     margin-bottom: 15px;
+     padding: 5px;
+     background-color: #CECECE;
+     border: #CECECE;
+     text-align: center;
+    
+ }
+ .myform button{
+   
+    margin-right:0px;
+    background-color:#5db7e7;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 14px;
+    padding-left: 45px;
+    padding-right: 45px;
+    border: #5db7e7;
+    color: white;
+    border-radius: 15px;
+   
+ }
+ h1{
+     margin-bottom: 0;
+     text-align: center;
+    
+ }
+ .myPhone {
+     border: 1px solid #ccc;
+     border-radius: 5px;
+     padding: 20px;
+     margin-top: 10px;
+     width: 900px;
+     background-color: #97CCE8;
+     display: flex;
+     justify-content: space-around;
+    
+     
+ }
+ .myPhone button{
+     background-color: black;
+     color: white;
+     font-weight: bold;
+     margin-top: 15px;
+ }
+ .myPhone p {
+     margin: 5px 0;
+     font-size: 16px;
+ }
+ 
