@@ -8,9 +8,9 @@ export default function LostList()
 {
 
 
-    const [cities,setCities] = useState(['Marrakech','Casablance','ElJadida',"Safi"]);
+    const [cities,setCities] = useState(['Marrakech','Casablanca','ElJadida',"Safi"]);
     const [categories,setCategories] = useState(['Document','Animal','Accessoire','Electronique','Affaires Enfants'])
-    const [subCategories,setSubCategories] = useState(['Carte d \'identite' , 'PassePort', 'Permis de conduire','Carte grise','Carte d\'etudiant','Classeur'])
+    const [subCategories,setSubCategories] = useState(['Carte d \'identite' , 'PassePort', 'Permis de conduire','Carte grise','Carte d\'étudiant','Classeur'])
 
    
 
@@ -61,18 +61,22 @@ export default function LostList()
                 
     ])
 
-    const [currentPage,setCurrentPage] = useState(1);
-    const [itemsPerPage,setItemsPerPage] = useState(20);
-
-    const lastItemIndex = currentPage * itemsPerPage;
-    const firstItemIndex = lastItemIndex - itemsPerPage;
-    const currentItems = lostItems.slice(firstItemIndex,lastItemIndex);
+    const [searchedList,setSearchedList] = useState(lostItems);
 
 
-    function SearchFor(x)
+//Pagination variables
+    // const [currentPage,setCurrentPage] = useState(1);
+    // const [itemsPerPage,setItemsPerPage] = useState(20);
+
+    // const lastItemIndex = currentPage * itemsPerPage;
+    // const firstItemIndex = lastItemIndex - itemsPerPage;
+    // const currentItems = lostItems.slice(firstItemIndex,lastItemIndex);
+
+
+    function SearchFor(t,c,cat,sub)
     {   
-        let T = lostItems.filter((i) => i.title.includes(x))
-        console.log(T);
+        let T = lostItems.filter((i) => i.title.toLowerCase().includes(t.toLowerCase()) && i.city.includes(c) && i.category.includes(cat) && i.subCategory.includes(sub))
+        setSearchedList(T);
     }
 
 
@@ -80,13 +84,13 @@ export default function LostList()
         <h1>J'ai perdu</h1>
         
 
-        <SearchFilter citiesList={cities}  categoriesList = {categories} subCategoriesList = {subCategories}></SearchFilter>
+        <SearchFilter SearchFor = {SearchFor}  citiesList={cities}  categoriesList = {categories} subCategoriesList = {subCategories}></SearchFilter>
         
-        <Pagination totalItems = {lostItems.length} itemPerPage = {itemsPerPage} setCurrentPage={setCurrentPage}></Pagination>
+        {/* <Pagination totalItems = {lostItems.length} itemPerPage = {itemsPerPage} setCurrentPage={setCurrentPage}></Pagination> */}
         <div className="items-section">
-            {currentItems.map((i,index) => <LostItem key={index} data={i} SearchFor = {SearchFor} />)}
+            {searchedList.map((i,index) => <LostItem key={index} data={i} />)}
         </div>
 
-        <Pagination totalItems = {lostItems.length} itemPerPage = {itemsPerPage} setCurrentPage={setCurrentPage}></Pagination>
+        {/* <Pagination totalItems = {lostItems.length} itemPerPage = {itemsPerPage} setCurrentPage={setCurrentPage}></Pagination> */}
     </>
 }

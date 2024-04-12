@@ -10,11 +10,14 @@ export default function SearchFilter(props)
 
 
     const [searchedItem,setSearchedItem] = useState('');
+    const [searchedItemCity,setSearchedItemCity] = useState('');
+    const [searchedItemCategory,setSearchedItemCategory] = useState('');
+    const [searchedItemSubCategory,setSearchedItemSubCategory] = useState('');
 
 
-    function handelSearch()
+    function handleSearch()
     {
-        props.SearchFor(searchedItem);
+        props.SearchFor(searchedItem,searchedItemCity,searchedItemCategory,searchedItemSubCategory);
     }
     
 
@@ -23,7 +26,7 @@ export default function SearchFilter(props)
        <div className="search-section">
             <div className="search">
                 <input  type="text" name="" className="search-input" placeholder="Rechercher un objet" onChange={(e) => setSearchedItem(e.target.value)}  />
-                <button className='top-section-button' onClick={handelSearch} >Rechercher</button>
+                <button className='top-section-button' onClick={handleSearch} >Rechercher</button>
             </div>
             
             <div className="ajouterObjet">
@@ -42,7 +45,7 @@ export default function SearchFilter(props)
                 {/* Selecting by city */}
                 <div className="filter-select-section" id='citiesList' >
                         <label className='filter-label' htmlFor="city">city: </label>
-                        <select className='filter-select' name="city" id="city">
+                        <select className='filter-select' name="city" id="city" onChange={(e) => setSearchedItemCity(e.target.value)} >
                             <option value=""></option>
                             {
                                 cities.map((c,index) => {
@@ -57,7 +60,7 @@ export default function SearchFilter(props)
                     {/* Selecting by category */}      
                 <div className="filter-select-section" id='categoriesList' >
                         <label className='filter-label' htmlFor="categorie">Categorie:</label>
-                        <select className='filter-select' name="categorie" id="categorie">
+                        <select className='filter-select' name="categorie" id="categorie" onChange={(e) => setSearchedItemCategory(e.target.value)}>
                             <option value=""></option>
                             {
                                 categories.map((c,index) => {
@@ -72,7 +75,7 @@ export default function SearchFilter(props)
                 {/* Selecting by Sub-category */}  
                 <div className="filter-select-section" id='sub-categoriesList' >
                         <label className='filter-label' htmlFor="sub-categorie">sub-Categorie:</label>
-                        <select className='filter-select' name="sub-categorie" id="sub-categorie">
+                        <select className='filter-select' name="sub-categorie" id="sub-categorie" onChange={(e) => setSearchedItemSubCategory(e.target.value)}>
                             <option value=""></option>
                             {
                                 subCategories.map((c,index) => {
