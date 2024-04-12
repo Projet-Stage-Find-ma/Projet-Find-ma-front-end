@@ -1,0 +1,16 @@
+
+.container
+{
+
+    text-align: center;
+}
+
+.page-button
+{
+    background-color: rgb(151, 204, 232);
+    border: none;
+    margin: 5px;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+}

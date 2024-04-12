@@ -7,8 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import {Routes,Route } from 'react-router-dom';
 import Home from './Components/layout/home';
 import Phone from './Components/phone';
-import FoundList from './Components/I_found';
-import LostList from './Components/I_lost';
+import FoundList from './Components/Items/foundList';
+import LostList from './Components/Items/lostList';
 import NavBar from './Components/layout/navbar';
 import UserLogin from './Components/UserConnection/UserLogin';
 import UserSignUp from './Components/UserConnection/UserSignUp';
