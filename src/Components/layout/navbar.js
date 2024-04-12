@@ -14,8 +14,8 @@ export default function NavBar()
 
         <div className="pagesLinks"> 
             <Link  className="NavLinks" to="/phone">Telephone</Link>               
-            <Link  className="NavLinks" to="/Lost">Objets perdus</Link>           
-            <Link  className="NavLinks" to="/found">Objets Trouvés</Link>
+            <Link  className="NavLinks" to="/itemsList/lost">Objets perdus</Link>           
+            <Link  className="NavLinks" to="/itemsList/found">Objets Trouvés</Link>
 
         </div>
 

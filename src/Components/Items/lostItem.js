@@ -9,7 +9,7 @@ export default function LostItem(props)
    
 
     return <div className="item">
-        <img className="item-image" src='media/backpack.jpg' alt="" />
+        <img className="item-image" src='/media/backpack.jpg' alt="" />
         <div className="info">
             <p>Titre: <span>{props.data.title}</span></p>
             <p>Catégorie: <span>{props.data.category}</span></p>

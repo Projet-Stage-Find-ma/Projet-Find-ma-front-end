@@ -7,8 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import {Routes,Route } from 'react-router-dom';
 import Home from './Components/layout/home';
 import Phone from './Components/phone';
-import FoundList from './Components/Items/foundList';
-import LostList from './Components/Items/lostList';
+import ItemsSearchList from './Components/Items/ItemsSearchList';
 import NavBar from './Components/layout/navbar';
 import UserLogin from './Components/UserConnection/UserLogin';
 import UserSignUp from './Components/UserConnection/UserSignUp';
@@ -27,8 +26,8 @@ function App() {
     <Routes>
       <Route path='/' element= {<Home />} ></Route>
       <Route path='/phone' element= {<Phone />} ></Route>
-      <Route path='/found' element= {<FoundList />} ></Route>
-      <Route path='/lost' element= {<LostList />} ></Route>
+     
+      <Route path='/itemsList/:type' element= {<ItemsSearchList />} ></Route>
 
       <Route path='/UserLogin' element= {<UserLogin />} ></Route>
       <Route path='/UserSignUp' element= {<UserSignUp />} ></Route>
