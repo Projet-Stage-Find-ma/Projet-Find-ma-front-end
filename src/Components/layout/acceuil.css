@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+
+/* Base styles */
+
+.container1Acceuil {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 100px;
+    align-items: center;
+    justify-content: center;
+}
+
+.Part1Container1 {
+    width: 50%;
+    margin-right: 180px;
+    text-align: center;
+}
+
+.Part2Container1 h1 {
+    font-size: 75px;
+    margin-top: 40px;
+    color: #97CCE8;
+    font-family: "Krona One", sans-serif;
+    font-weight: 500;
+}
+
+.Part1Container1 p {
+    margin-top: 50px;
+    font-weight: 500;
+}
+
+.Part1Container1 h1 {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.Part1Container1 button {
+    background-color: #97CCE8;
+    border: none;
+    margin-right: 50px;
+    margin-top: 10px;
+    border-radius: 20px;
+    padding: 10px;
+    width: 160px;
+    font-size: 12px;
+    color: white;
+    font-weight: 500;
+}
+
+.Container2Acceuil {
+    background-color: #97CCE8;
+    padding: 10px;
+    margin-bottom: 100px;
+}
+
+.mycontainer {
+    display: flex;
+  margin-top: 50px;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 30px;
+    margin-left: 10px;
+}
+
+.mycard {
+    width: 600px;
+    text-align: center;
+    height: 130px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.myflech {
+    margin-left: 0px;
+    text-align: center;
+    width: 100px;
+    margin-right: 30px;
+}
+

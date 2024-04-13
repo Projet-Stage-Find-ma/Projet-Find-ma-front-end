@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -16,7 +16,11 @@ import UserProfile from './Components/UserProfil/UserProfile';
 import UserPhones from './Components/UserProfil/UserPhones';
 import UserObjects from './Components/UserProfil/UserObjects';
 import NavBarLogged from './Components/layout/navbarLogged';
+
 import ItemDetails from './Components/Items/itemDetails';
+
+import Addphone from './Components/Addphone';
+
 
 function App() {
   return <>
@@ -37,7 +41,7 @@ function App() {
       <Route path='/UserProfile' element={<UserProfile/>} ></Route>
       <Route path='/UserPhones' element= {<UserPhones/>} ></Route>
       <Route path='/UserObjects' element= {<UserObjects />} ></Route>
-     
+      <Route path='/addphone' element= {<Addphone />} ></Route>
       
 
     </Routes>
