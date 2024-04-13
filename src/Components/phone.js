@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./phone.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import { Link } from "react-router-dom";
 
 export default function Phone() {
     const [imei, setImei] = useState("");
@@ -29,7 +30,7 @@ export default function Phone() {
         <>
            <div className="GlobalContainer">
             <button className="Ajout">
-                <FontAwesomeIcon icon={faCirclePlus}/> Ajouter mon IMEI
+                <Link to="/addphone" style={{"color":"white"}}> <FontAwesomeIcon icon={faCirclePlus}/> Ajouter mon IMEI</Link>
             </button>
             <div className="containerPhone">
                 <h1>Rechercher un IMEI</h1>
