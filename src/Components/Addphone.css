@@ -38,8 +38,8 @@ h1 {
 
 .part1,
 .part2 {
-    width: 100%; /* Ensure both parts take up full width */
-    margin-bottom: 20px; /* Add space between parts */
+    width: 100%; 
+    margin-bottom: 20px; 
 }
 
 p {

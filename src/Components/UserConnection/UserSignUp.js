@@ -2,6 +2,7 @@ import React from "react";
 import './UserSignUp.css';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
  export default function UserSignUp()
  {
@@ -58,14 +59,24 @@ import { useNavigate } from "react-router-dom";
          return {errors,valid};
          
     }
-    function handleSubmit(e)
+    async function handleSubmit(e)
     {
         e.preventDefault();
+        console.log({ nom, prenom, email, pass }); 
         const {errors,valid}=validate(nom,prenom,email,pass,confPass);
         setErrors(errors);
         if(valid)
         {
-            navigate("/home");
+         try {
+            
+            await axios.post('http://localhost:3000/api/signup', {nom: nom,prenom:prenom,email:email, password: pass });
+            
+           
+            navigate("/UserLogin");
+        } catch (error) {
+            console.error('Error signing up:', error);
+          
+        }
         }
 
 
