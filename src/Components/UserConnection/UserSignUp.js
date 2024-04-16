@@ -2,6 +2,7 @@ import React from "react";
 import './UserSignUp.css';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
  export default function UserSignUp()
  {
@@ -58,14 +59,28 @@ import { useNavigate } from "react-router-dom";
          return {errors,valid};
          
     }
-    function handleSubmit(e)
+
+   //SignUp API
+   const addUser = async() =>{
+
+      axios.post('http://localhost:3002/signup',{nom,prenom,email,pass})
+      .then( res => 
+      {
+         console.log(res);
+         navigate('/');
+      })
+      .catch( err => console.log(err))
+   }
+
+   
+   function handleSubmit(e)
     {
         e.preventDefault();
         const {errors,valid}=validate(nom,prenom,email,pass,confPass);
         setErrors(errors);
         if(valid)
         {
-            navigate("/home");
+         addUser();
         }
 
 

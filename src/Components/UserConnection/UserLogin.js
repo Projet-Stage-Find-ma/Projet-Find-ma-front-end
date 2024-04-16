@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import "./UserLogin.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function UserLogin() {
     const [email, setEmail] = useState("");
@@ -12,40 +13,44 @@ export default function UserLogin() {
 
     const users = [{"email": "email1@gmail.com", "pass": 123456}, {"email": "email2@gmail.com", "pass": 123}];
 
-    const validate = (email, pass) => {
-        const errors = {};
-        let exist = false; 
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    // const validate = (email, pass) => {
+    //     const errors = {};
+    //     let exist = false; 
+    //     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
        
-        if (!email) {
-            errors.email = "Email is required!";
-        } else if (!regex.test(email)) {
-            errors.email = "This is not a valid email format!";
-        }
-        if (!pass) {
-            errors.password = "Password is required";
-        }
+    //     if (!email) {
+    //         errors.email = "Email is required!";
+    //     } else if (!regex.test(email)) {
+    //         errors.email = "This is not a valid email format!";
+    //     }
+    //     if (!pass) {
+    //         errors.password = "Password is required";
+    //     }
 
-        if (Object.keys(errors).length === 0) {
-            if (users.find((u) => u.email === email && u.pass === parseInt(pass))) { 
-                exist = true;
-            }
-        }
-        return { errors, exist };
-    };
+    //     return { errors, exist };
+    // };
 
+    const handleLogin = async() =>
+    {
+        await axios.post('http://localhost:3002/login',{email,pass})
+        .then(res =>
+        {
+            console.log(res);
+        })
+        .catch( err => console.log(err))
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
-        const { errors, exist } = validate(email, pass);
-        setFormErrors(errors);
+        // const { errors, exist } = validate(email, pass);
+        // setFormErrors(errors);
         
-        if (exist) {
-            navigate("/home"); 
-        }
-        else if(Object.keys(errors).length === 0)
-        {
-            setMessage("Cet utilisateur ne se trouve pas");
-        }
+        
+        handleLogin();
+        
+        // if(Object.keys(errors).length === 0)
+        // {
+        //     setMessage("Cet utilisateur ne se trouve pas");
+        // }
     };
 
     return (
