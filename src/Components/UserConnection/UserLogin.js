@@ -4,14 +4,15 @@ import "./UserLogin.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-export default function UserLogin() {
+export default function UserLogin(props) {
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
     const [formErrors, setFormErrors] = useState({});
     const [msg,setMessage]=useState("")
     const navigate = useNavigate(); 
 
-    const users = [{"email": "email1@gmail.com", "pass": 123456}, {"email": "email2@gmail.com", "pass": 123}];
+    const [userIsLoggedIn,setUserIsLoggedIn] = useState(false);
+  
 
     // const validate = (email, pass) => {
     //     const errors = {};
@@ -32,25 +33,25 @@ export default function UserLogin() {
 
     const handleLogin = async() =>
     {
-        await axios.post('http://localhost:3002/login',{email,pass})
+        await axios.post('http://localhost:3002/user/login',{email,pass})
         .then(res =>
         {
-            console.log(res);
+            //extracting the toking
+            const {token} = res.data;
+
+            //saving the token in local storage
+            localStorage.setItem('token',token)
+    
         })
+        .then(() => navigate(`/`))
         .catch( err => console.log(err))
     }
+
+   
     const handleSubmit = (e) => {
         e.preventDefault();
-        // const { errors, exist } = validate(email, pass);
-        // setFormErrors(errors);
-        
-        
         handleLogin();
-        
-        // if(Object.keys(errors).length === 0)
-        // {
-        //     setMessage("Cet utilisateur ne se trouve pas");
-        // }
+    
     };
 
     return (

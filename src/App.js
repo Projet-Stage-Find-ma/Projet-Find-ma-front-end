@@ -15,39 +15,49 @@ import Footer from './Components/layout/footer';
 import UserProfile from './Components/UserProfil/UserProfile';
 import UserPhones from './Components/UserProfil/UserPhones';
 import UserObjects from './Components/UserProfil/UserObjects';
-import NavBarLogged from './Components/layout/navbarLogged';
+
 
 import ItemDetails from './Components/Items/itemDetails';
 
 import Addphone from './Components/Addphone';
+import  {jwtDecode}  from "jwt-decode";
 
+import { useState,useEffect } from 'react';
+import MainApp from './MainApp';
 
 function App() {
-  return <>
-    <NavBar></NavBar>
-    
 
+
+  const [userID,setUserID] = useState();
+  const [userIsLogged,setUserIsLogged] = useState(false);
+
+
+  useEffect(() => {
+    const fetchUserID = async () => {
+        const token = await localStorage.getItem('token');
+        if(token) {
+            const decodedToken = jwtDecode(token);
+            setUserID(decodedToken.userId);
+        }
+    };
+
+    fetchUserID();
+}, []);
+ 
+
+  
+
+  return <>
+    
+  
     
     <Routes>
-      <Route path='/' element= {<Home />} ></Route>
-      <Route path='/phone' element= {<Phone />} ></Route>
-     
-      <Route path='/itemsList/:type' element= {<ItemsSearchList />} ></Route>
-      <Route path='/item/:id' element={<ItemDetails/>}></Route>
-
-      <Route path='/UserLogin' element= {<UserLogin />} ></Route>
+      <Route path='*' element={<MainApp userID = {userID} />} ></Route>
+      <Route path='/UserLogin' element= {<UserLogin   />} ></Route>
       <Route path='/UserSignUp' element= {<UserSignUp />} ></Route>
-
-      <Route path='/UserProfile' element={<UserProfile/>} ></Route>
-      <Route path='/UserPhones' element= {<UserPhones/>} ></Route>
-      <Route path='/UserObjects' element= {<UserObjects />} ></Route>
-      <Route path='/addphone' element= {<Addphone />} ></Route>
-      
-
     </Routes>
 
-    <Footer></Footer>
-  
+   
   
   </>
 }

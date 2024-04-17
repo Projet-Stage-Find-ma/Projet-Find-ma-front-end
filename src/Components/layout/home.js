@@ -1,14 +1,16 @@
 import React from "react";
 import "./acceuil.css";
+import { getUserID } from "../UserConnection/connection";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 export default function Acceuil()
 {
+   const userID = getUserID();
    
     return <>
-    
+    <h1>User {userID}</h1>
     <div className="container1Acceuil">
     
         

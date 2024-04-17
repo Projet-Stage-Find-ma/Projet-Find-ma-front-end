@@ -63,11 +63,11 @@ import axios from "axios";
    //SignUp API
    const addUser = async() =>{
 
-      axios.post('http://localhost:3002/signup',{nom,prenom,email,pass})
+      axios.post('http://localhost:3002/user/signup',{nom,prenom,email,pass})
       .then( res => 
       {
          console.log(res);
-         navigate('/');
+         navigate('/UserLogin');
       })
       .catch( err => console.log(err))
    }
