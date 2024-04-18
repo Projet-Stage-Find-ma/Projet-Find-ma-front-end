@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import './filter.css'
+import { useNavigate } from 'react-router-dom';
+import { getUserID } from '../UserConnection/connection';
 
 export default function SearchFilter(props)
 {
@@ -7,7 +9,7 @@ export default function SearchFilter(props)
     const categories = props.categoriesList;
     const cities = props.citiesList;
     const subCategories = props.subCategoriesList;
-
+    const navigate = useNavigate();
 
     const [searchedItem,setSearchedItem] = useState('');
     const [searchedItemCity,setSearchedItemCity] = useState('');
@@ -20,6 +22,18 @@ export default function SearchFilter(props)
         props.SearchFor(searchedItem,searchedItemCity,searchedItemCategory,searchedItemSubCategory);
     }
     
+    function handleClickOnAjouter()
+    {
+
+        if(getUserID())
+        {
+            navigate('/addObject')
+        }
+        else
+        {
+            navigate('/userLogin')
+        }
+    }
 
     return <div className='filter'>
 
@@ -31,8 +45,8 @@ export default function SearchFilter(props)
             
             <div className="ajouterObjet">
                 
-                <button className='top-section-button' id='ajouter' >
-                <img src="media/add.png" width='28px' alt="" /> Ajouter un objet</button>
+                <button className='top-section-button' id='ajouter' onClick={handleClickOnAjouter} >
+                <img src="/media/add.png" width='28px' alt="" /> Ajouter un objet</button>
             </div>
        </div>
 

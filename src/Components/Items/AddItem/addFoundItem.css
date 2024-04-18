@@ -1,0 +1,167 @@
+#addFoundItemForm
+{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+}
+
+#addFoundItemContainer
+{
+    
+    padding: 20px;
+    width: 100%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+.mainData
+{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-evenly;
+    height: 400px;
+    
+}
+
+#ImageContainer
+{
+    
+    display: flex;
+    align-items: center;
+}
+
+#imageHolder
+{
+    background-color:rgba(151, 204, 232, 1) ;
+    border-radius: 5px;
+}
+
+
+#LocationTitle
+{
+    font-family: "Inter";
+    font-weight: 900;
+    font-size: 18px ;
+}
+
+#LocationData
+{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+}
+
+
+#onPersonNotChosen
+{
+    display: none;
+}
+
+
+#OnPersonChosen
+{
+   
+    padding: 10px;
+}
+
+.radioContainer
+{
+   display: flex;
+   padding: 10px;
+   align-items: center;
+}
+
+.addFountItemRadio
+{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid rgba(151, 204, 232, 1);
+    outline: none;
+    transition: border-color 0.3s ease;
+    margin-right: 20px;
+}
+
+/* Custom radio button style when checked */
+
+.addFountItemRadio:checked {
+    border-color: rgba(151, 204, 232, 1);
+    background-color: rgba(151, 204, 232, 1);
+}
+
+/* Custom inner dot style */
+
+.addFountItemRadio::before {
+    content: '';
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+/* Custom inner dot style when checked */
+
+.addFountItemRadio:checked::before {
+    background-color: #fff; /* Change this to the color of the dot when checked */
+}
+
+#offPersonContainer
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#offPersonLocationInput
+{
+    background-color:rgba(217, 217, 217, 0.87) ;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    width: 400px;
+}
+
+#offPersonLocationMessage
+{
+    width: 400px;
+    margin-left: 45px;
+    
+}
+
+.AddItemContact
+{
+    
+    margin-top: 5px;
+}
+
+.AddItemContact input
+{
+    background-color:rgba(217, 217, 217, 0.87) ;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    width: 300px;
+}
+
+.AddItemContact p
+{
+    
+    text-align: center;
+    margin-top: 5px;
+}

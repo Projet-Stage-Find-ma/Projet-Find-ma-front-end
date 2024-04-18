@@ -10,7 +10,7 @@ export default function Acceuil()
    const userID = getUserID();
    
     return <>
-    <h1>User {userID}</h1>
+   
     <div className="container1Acceuil">
     
         

@@ -13,12 +13,13 @@ import Footer from './Components/layout/footer';
 import UserProfile from './Components/UserProfil/UserProfile';
 import UserPhones from './Components/UserProfil/UserPhones';
 import UserObjects from './Components/UserProfil/UserObjects';
-
-
+import AddFoundItem from './Components/Items/AddItem/addFoundItem';
+import AddLostItem from './Components/Items/AddItem/addLostItem';
 import ItemDetails from './Components/Items/itemDetails';
 
 import Addphone from './Components/Addphone';
 import { useEffect, useState } from 'react';
+import AddItem from './Components/Items/AddItem/addItem';
 
 
 export default function MainApp(props)
@@ -48,7 +49,7 @@ export default function MainApp(props)
     {
     return <>
     
-    <h1>{isUserLoggedIn}</h1>
+ 
     {(isUserLoggedIn)?<NavBarLogged></NavBarLogged>:<NavBar></NavBar>}
     
 
@@ -64,6 +65,9 @@ export default function MainApp(props)
       <Route path='/UserPhones' element= {<UserPhones/>} ></Route>
       <Route path='/UserObjects' element= {<UserObjects />} ></Route>
       <Route path='/addphone' element= {<Addphone />} ></Route>
+      <Route path='/addObject/*' element={<AddItem/>}>
+            
+      </Route>
 
 
     </Routes>
