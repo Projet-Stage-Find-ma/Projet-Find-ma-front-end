@@ -2,6 +2,8 @@ import { useState,useRef } from "react";
 import SelectCategory from "./subComponents/selectCategory";
 import SelectCities from "./subComponents/selectCity";
 import SelectSubCategory from "./subComponents/selectSubCategory";
+import imageCompression from "browser-image-compression";
+
 
 import './addFoundItem.css'
 import axios from "axios";
@@ -59,29 +61,52 @@ export default function AddFoundItem()
 
 
     // Displaying the uploaded Image to the user
-    function handleUploadedImage(event)
+    const  handleUploadedImage = async (event) =>
     {
+
+        const options = {
+            maxSizeMb:1,
+            maxWidthOrHeight: 400, 
+            useWebWorker: true
+        }
         const file = event.target.files[0];
-        const reader = new FileReader();
+        
 
         if(!file.type.startsWith('image/'))
         {
             alert("Seules les images sont autorisées");
             return
         }
-        
-        reader.onload = () =>
+
+        try
         {
-            setImgHolder(reader.result);
-            setData({...data,image:file});
+            const compressedImage  =  await imageCompression(file,options);
+
+            const reader = new FileReader();
+            reader.onload = (event) =>
+            {
+                setImgHolder(event.target.result);
+                setData({...data,image:reader.result});
+                console.log(event.target.result);
+                
+            }
+
+
+            if(file)
+            {
+                reader.readAsDataURL(compressedImage);
+            
+            }
             
         }
-
-        if(file)
+        catch(err)
         {
-            reader.readAsDataURL(file);
-            console.log(file)
+
         }
+
+        
+
+        
     }
 
     //Onclick on the image a file upload window triggers
@@ -166,9 +191,9 @@ export default function AddFoundItem()
 
             console.log(dataToSend.image);
 
-            // axios.post(`http://localhost:3002/api/data/createFoundObject`,dataToSend)
-            // .then(res => console.log(res.data))
-            // .catch(err => console.error(err))
+            axios.post(`http://localhost:3002/api/data/createFoundObject`,dataToSend)
+            .then(res => console.log(res.data))
+            .catch(err => console.error(err))
         }
         
         
