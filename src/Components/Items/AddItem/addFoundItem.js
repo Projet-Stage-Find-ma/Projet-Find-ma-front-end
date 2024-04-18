@@ -66,7 +66,7 @@ export default function AddFoundItem()
 
         const options = {
             maxSizeMb:1,
-            maxWidthOrHeight: 400, 
+            maxWidthOrHeight: 500, 
             useWebWorker: true
         }
         const file = event.target.files[0];
@@ -81,14 +81,12 @@ export default function AddFoundItem()
         try
         {
             const compressedImage  =  await imageCompression(file,options);
+            setData({...data,image:compressedImage});
 
             const reader = new FileReader();
             reader.onload = (event) =>
             {
-                setImgHolder(event.target.result);
-                setData({...data,image:reader.result});
-                console.log(event.target.result);
-                
+                setImgHolder(event.target.result);              
             }
 
 
@@ -101,7 +99,7 @@ export default function AddFoundItem()
         }
         catch(err)
         {
-
+            console.error(err);
         }
 
         
@@ -189,9 +187,13 @@ export default function AddFoundItem()
         if(allowsendingData)
         {
 
-            console.log(dataToSend.image);
+            
 
-            axios.post(`http://localhost:3002/api/data/createFoundObject`,dataToSend)
+            axios.post(`http://localhost:3002/api/data/createFoundObject`,dataToSend,{
+                headers:{
+                    'Content-Type':'multipart/form-data'
+                }
+            })
             .then(res => console.log(res.data))
             .catch(err => console.error(err))
         }

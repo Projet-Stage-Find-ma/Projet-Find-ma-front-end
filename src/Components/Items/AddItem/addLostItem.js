@@ -16,8 +16,9 @@ export default function AddLostItem()
         const response = await axios.get(`http://localhost:3002/api/data/image`)
         .then(res =>
         {
-            setImageData(res.data);
+            setImageData(`http://localhost:3002/${res.data.image}`);
             console.log(res.data);
+            console.log(`http://localhost:3002/${res.data.image}`)
         });
         
         
