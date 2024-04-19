@@ -33,7 +33,7 @@ export default function UserLogin(props) {
 
     const handleLogin = async() =>
     {
-        await axios.post('http://localhost:3002/user/login',{email,pass})
+        await axios.post('http://localhost:3002/api/login',{email,pass})
         .then(res =>
         {
             //extracting the toking
