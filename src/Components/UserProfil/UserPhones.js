@@ -43,7 +43,7 @@ export default function UserPhones() {
                 return;
             }
 
-            const response = await axios.delete(`http://localhost:3000/api/deletePhone/${phoneId}`, {
+            const response = await axios.delete(`http://localhost:3002/api/deletePhone/${phoneId}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -77,7 +77,7 @@ export default function UserPhones() {
                 return;
             }
     
-            const response = await axios.post(`http://localhost:3000/api/generateCode`, { id }, {
+            const response = await axios.post(`http://localhost:3002/api/generateCode`, { id }, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
