@@ -188,10 +188,12 @@ export default function AddFoundItem()
         {
 
             
-
+            const token =  localStorage.getItem('token');
+            
             axios.post(`http://localhost:3002/api/data/createFoundObject`,dataToSend,{
                 headers:{
-                    'Content-Type':'multipart/form-data'
+                    'Content-Type':'multipart/form-data',
+                    'Authorization':`Bearer ${token}`
                 }
             })
             .then(res => console.log(res.data))
