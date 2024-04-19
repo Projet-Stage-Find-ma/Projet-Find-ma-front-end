@@ -20,14 +20,14 @@
     text-align: center;
 }
 
-.formContainer {
+.formContainerPhone {
     display: flex;
     flex-direction: column; 
     justify-content: space-around;
     margin-top: 70px;
 }
 
-.globalContainer {
+.globalContainerPhone {
     padding: 8%;
 }
 
@@ -36,8 +36,8 @@ h1 {
     font-weight: bold;
 }
 
-.part1,
-.part2 {
+.part1Phone,
+.part2Phone {
     width: 100%; 
     margin-bottom: 20px; 
 }
@@ -46,14 +46,14 @@ p {
     text-align: justify;
 }
 
-.myButtons {
+.myButtonsPhone {
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px; 
     text-align: center; 
 }
 
-.myButtons input {
+.myButtonsPhone input {
     margin-right: 40px; 
     margin-left: 40px;
     padding: 10px 20px; 
@@ -77,12 +77,12 @@ input[type="reset"]
 
 /* Media Queries */
 @media only screen and (min-width: 768px) {
-    .formContainer {
+    .formContainerPhone {
         flex-direction: row; 
     }
 
-    .part1,
-    .part2 {
+    .part1Phone,
+    .part2Phone {
         width: 45%; 
         margin-bottom: 0; 
     }
@@ -98,7 +98,7 @@ input[type="reset"]
         margin-bottom: 5px; 
     }
 
-    .myButtons input {
+    .myButtonsPhone input {
         margin: 10px 0; 
         margin-right:10px ;
     }

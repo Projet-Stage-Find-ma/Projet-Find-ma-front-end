@@ -16,20 +16,32 @@ import UserProfile from './Components/UserProfil/UserProfile';
 import UserPhones from './Components/UserProfil/UserPhones';
 import UserObjects from './Components/UserProfil/UserObjects';
 import NavBarLogged from './Components/layout/navbarLogged';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 import ItemDetails from './Components/Items/itemDetails';
 
 import Addphone from './Components/Addphone';
+import Acceuil from './Components/layout/home';
+import ModifyPhone from './Components/Modifyphone';
+import Buyphone from './Components/Buyphone';
 
 
 function App() {
+  const [islogged,setIslogged]=useState(false)
+  
+  
   return <>
-    <NavBar></NavBar>
+  
+   {islogged?<NavBarLogged/>: <NavBar/>} 
+   
+   
+ 
     
 
     
     <Routes>
-      <Route path='/' element= {<Home />} ></Route>
+      <Route path='/home' element= {<Acceuil />} ></Route>
       <Route path='/phone' element= {<Phone />} ></Route>
      
       <Route path='/itemsList/:type' element= {<ItemsSearchList />} ></Route>
@@ -42,6 +54,10 @@ function App() {
       <Route path='/UserPhones' element= {<UserPhones/>} ></Route>
       <Route path='/UserObjects' element= {<UserObjects />} ></Route>
       <Route path='/addphone' element= {<Addphone />} ></Route>
+      <Route path='/Modifyphone/:id' element= {<ModifyPhone />} ></Route>
+      <Route path='/Buyphone' element= {<Buyphone />} ></Route>
+      
+     
       
 
     </Routes>
