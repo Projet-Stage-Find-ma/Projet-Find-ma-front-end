@@ -20,7 +20,7 @@ export default function UserPhones() {
                 return;  
             }
             try {
-                const response = await axios.get("http://localhost:3000/api/getphones", {
+                const response = await axios.get("http://localhost:3002/api/getphones", {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }

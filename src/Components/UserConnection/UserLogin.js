@@ -34,7 +34,7 @@ export default function UserLogin() {
         
         if (Object.keys(errors).length === 0) {
             try {
-                const response = await axios.post('http://localhost:3000/api/login', { email, pass });
+                const response = await axios.post('http://localhost:3002/api/login', { email, pass });
                 
                 const token = response.data.token;
                 localStorage.setItem('token', token);

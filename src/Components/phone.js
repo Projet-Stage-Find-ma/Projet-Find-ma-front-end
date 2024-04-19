@@ -14,20 +14,38 @@ export default function Phone() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        try {
-            const response = await axios.post("http://localhost:3000/api/getPhoneByIMEI", { imei });
-            if (response.data.tel) {
-                setTel(response.data.tel);
-                setMsg("");
-            } else {
-                setTel(null);
-                setMsg("Aucun téléphone avec cet IMEI trouvé");
-            }
-        } catch (error) {
-            console.error('Error fetching phone by IMEI:', error);
+        
+        await axios.post("http://localhost:3002/api/getPhoneByIMEI", { imei })
+        .then((res) =>
+        {
+        // setTel(res.data.tel);
+        console.log(res.data[0]);
+        setTel(res.data[0]);
+        setMsg("");
+        })
+        .catch(err =>
+        {
+            console.error('Error fetching phone by IMEI:', err);
             setTel(null);
             setMsg("Une erreur s'est produite lors de la recherche du téléphone par IMEI");
-        }
+        });
+
+        // try {
+          
+          
+        //     if (response.data.tel) {
+               
+        //         setTel(response.data.tel);
+        //         setMsg("");
+        //     } else {
+        //         setTel(null);
+        //         setMsg("Aucun téléphone avec cet IMEI trouvé");
+        //     }
+        // } catch (error) {
+        //     console.error('Error fetching phone by IMEI:', error);
+        //     setTel(null);
+        //     setMsg("Une erreur s'est produite lors de la recherche du téléphone par IMEI");
+        // }
     }
     
 
