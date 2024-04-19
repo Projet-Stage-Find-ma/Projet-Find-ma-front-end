@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+
+
+
+.relative-container1 {
+    position: relative;
+    height: 120vh;
+    background-color: #97CCE8;
+    width: 200px; 
+    font-family: "Krona One", sans-serif;
+  }
+  
+  .sidenav {
+    position: absolute;
+    top: 150px; 
+    left: 0;
+    width: 100%;
+  }
+  
+  .nav-link {
+    display: block;
+    padding: 15px 20px; 
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    margin-bottom: 60px;
+    transition: background-color 0.3s ease; /* Add smooth transition effect */
+  }
+  
+  .nav-link:hover {
+    background-color:#D9D9D9;
+    color: #fff; /* Change text color on hover */
+  }
+  
+ 

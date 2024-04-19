@@ -1,0 +1,78 @@
+.userProfilContainer {
+  display: flex;
+  
+}
+
+.part2UserProfil {
+  width: 100%;
+  margin-top: 40px;
+}
+
+.userProfilTitle {
+  font-size: 30px;
+  background-color: #97CCE8;
+  margin-bottom: 20px;
+  padding: 15px;
+  width: 100%;
+ 
+}
+
+.userInformationProfil {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  border: solid #97CCE8;
+  width: 90%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: auto;
+  margin-top: 70px;
+  
+}
+
+.userInformationProfil form {
+  display: flex;
+  flex-direction: column;
+}
+
+.userInformationProfil label {
+  margin-bottom: 10px;
+}
+
+.userInformationProfil input[type="text"] {
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.userInformationProfil input[type="submit"],
+.userInformationProfil button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #5db7e7;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 250px;
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.userInformationProfil button {
+  background-color: black;
+}
+
+.userInformationProfil input[type="submit"]:hover,
+.userInformationProfil button:hover {
+  background-color: #0056b3;
+}
+.userInformationProfil label{
+  font-size: 20px;
+  color: #5db7e7;
+  font-weight: 500;
+  margin-top: 20px;
+}
