@@ -5,6 +5,12 @@
     width: 20%;
     
   }
+  .userName{
+margin-top: 12px;
+    font-weight: 648;
+    font-size: 20px;
+    
+  }
 
 
   
@@ -16,10 +22,31 @@
     background-color: rgb(151, 204, 232);
     border: none;
     padding: 5px;
+    border-radius: 10px;
+    transition: background-color 0.5s ease; /* Add smooth transition effect */
+
+    
+  }
+
+  .userProfileButton{
+    border: solid white;
+    background-color: rgb(151, 204, 232) ;
+    border-radius: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 5px;
+    color:white;
+    transition: background-color 0.5s ease; /* Add smooth transition effect */
+
+  }
+  .userProfileButton:hover{
+    background-color:white;
+    color: rgb(151, 204, 232) 
   }
   
   .menu:hover .linksList {
     display: block;
+    
   }
   
   .userProfileLinks {
@@ -37,6 +64,7 @@
   .userProfileLinks:hover {
     
     background-color:white;
+    color: rgb(151, 204, 232) 
   }
   /* Adjust styles as needed */
   

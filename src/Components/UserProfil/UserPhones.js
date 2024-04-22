@@ -4,6 +4,8 @@ import axios from "axios";
 import './UserPhones.css';
 import { Link } from 'react-router-dom';
 import SideNavBar from '../layout/sideNav';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 
 export default function UserPhones() {
     const [telephones, setTelephones] = useState([]);
@@ -115,10 +117,10 @@ export default function UserPhones() {
                             <td>{t.serialNumber}</td>
                             <td>Marque: {t.brand} <br />Model: {t.model} <br />Couleur: {t.color}  </td>
                             
-                            <td>{t.status}</td>
+                            <td>{t.status==="perdu" || t.status==="vole" ? <span style={{"color":"red","fontWeight":"bold","fontSize":"20px"}}> <FontAwesomeIcon icon={faTriangleExclamation} /> {t.status}</span> : <span style={{"color":"green","fontSize":"20px","fontWeight":"bold"}}>{t.status}</span>}</td>
                             <td className='userPhoneButtons'>
                                 
-                            <button id="modifierPhone" > <Link to={`/Modifyphone/${t.id}`} style={{"color":"white"}}>Afficher</Link></button>
+                            <Link to={`/Modifyphone/${t.id}`}>  <button id="modifierPhone" > Afficher </button></Link>
                                 <button id="supprimerPhone" onClick={() => {
         if (window.confirm("Êtes-vous sûr de vouloir supprimer ce téléphone ?")) {
             deletePhone(t.id);
