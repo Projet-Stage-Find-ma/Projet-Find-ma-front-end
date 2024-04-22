@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Buyphone.css"
+import { getUserID } from './UserConnection/connection';
 
 export default function Buyphone() {
     const [code, setCode] = useState('');
     const navigate = useNavigate();
     const [msg,setMessage]=useState("");
     const [nameClass,setNameClass]=useState("")
-
+    
+    useEffect(() =>
+    {
+     if(!getUserID())
+        navigate('/UserLogin')
+    })
     async function handleSubmit(e) {
         e.preventDefault();
         if (!code) {
@@ -18,16 +24,14 @@ export default function Buyphone() {
 
         try {
           
-            const response = await axios.post("http://localhost:3000/api/buyphone", {
-                code: code
-            }, {
+            const response = await axios.post("http://localhost:3002/api/buyphone", {code:code}, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
             });
 
             if (response.status === 200) {
-                setMessage('téléphone a été bien acheté!');
+                setMessage(response.data.message);
                 setNameClass("alert alert-success mb-3")
                 
             }

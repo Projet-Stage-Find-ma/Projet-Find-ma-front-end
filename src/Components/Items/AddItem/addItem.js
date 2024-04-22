@@ -9,20 +9,20 @@ export default function AddItem()
     const location = useLocation();
     
     return <div>
-        <h1 id="AddItemTitle">{(location.pathname === "/addObject/addLostItem")?"J'ai perdue":"J'ai trouvé"}</h1>
+        <h1 id="AddItemTitle">{(location.pathname === "/addObject/lost")?"J'ai perdue":"J'ai trouvé"}</h1>
     
 
         <div className="switchingBlock">
-        <Link className={(location.pathname === "/addObject/addLostItem")?"switchingLinkOn":"switchingLinkOff"} to='/addObject/addLostItem'>Perdue</Link>
-        <Link className={(location.pathname === "/addObject/addFoundItem")?"switchingLinkOn":"switchingLinkOff"} to='/addObject/addFoundItem'>Trouvée</Link>
+        <Link className={(location.pathname === "/addObject/lost")?"switchingLinkOn":"switchingLinkOff"} to='/addObject/lost'>Perdue</Link>
+        <Link className={(location.pathname === "/addObject/found")?"switchingLinkOn":"switchingLinkOff"} to='/addObject/found'>Trouvée</Link>
 
         </div>
 
 
 
        <Routes>
-       <Route path='addLostItem' element={<AddLostItem/>}></Route>
-        <Route path='addFoundItem' element={<AddFoundItem/>}></Route>
+       <Route path='lost' element={<AddLostItem/>}></Route>
+        <Route path='found' element={<AddFoundItem/>}></Route>
        </Routes>
        
        

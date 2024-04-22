@@ -22,16 +22,17 @@ export default function UserProfile() {
                 return;  
             }
             try {
-                const response = await axios.get("http://localhost:3000/api/getuser", {
+                const response = await axios.get("http://localhost:3002/api/getuser", {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
                 });
-               setUser(response.data.user);
-               setNewValues(response.data.user);
+                
+               setUser(response.data.row[0]);
+               setNewValues(response.data.row[0]);
             } catch (error) {
                 console.error('Error fetching user:', error);
-                navigate("/UserLogin");
+                // navigate("/UserLogin");
             }
         };
 
@@ -40,6 +41,7 @@ export default function UserProfile() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(newValues);
         try {
             const token = localStorage.getItem('token');
             if (!token) {
@@ -47,7 +49,7 @@ export default function UserProfile() {
                 return;
             }
     
-            const response = await axios.post(`http://localhost:3000/api/updateUser`, newValues, {
+            const response = await axios.post(`http://localhost:3002/api/updateUser`, newValues, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -59,6 +61,8 @@ export default function UserProfile() {
             } else {
                 console.error('Invalid response:', response);
             }
+
+            setEditField(null);
     
         } catch (error) {
             console.error('Error updating user:', error);
@@ -71,7 +75,7 @@ export default function UserProfile() {
                 setNameClass("alert alert-danger mb-3");
             }
         }
-        setEditField(null);
+        
     };
 
     const handleInputClick = (field) => {
@@ -105,9 +109,10 @@ export default function UserProfile() {
                             <span onClick={() => handleInputClick('email')}>{newValues.email}</span>
                         )}
                         
-                        {editField && (
+                      
                             <input type="submit" value="Enregistrer" />
-                        )}
+                      
+                       
                     </form>
                 </div>
             </div>

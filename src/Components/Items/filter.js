@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './filter.css'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getUserID } from '../UserConnection/connection';
 
 export default function SearchFilter(props)
@@ -10,6 +10,9 @@ export default function SearchFilter(props)
     const cities = props.citiesList;
     const subCategories = props.subCategoriesList;
     const navigate = useNavigate();
+
+    const {type} = useParams();
+    console.log("filter"+type);
 
     const [searchedItem,setSearchedItem] = useState('');
     const [searchedItemCity,setSearchedItemCity] = useState('');
@@ -27,7 +30,7 @@ export default function SearchFilter(props)
 
         if(getUserID())
         {
-            navigate('/addObject')
+            navigate(`/addObject/${type}`)
         }
         else
         {

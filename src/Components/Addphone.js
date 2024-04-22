@@ -46,7 +46,7 @@ export default function Addphone() {
                 console.error('Token not found.');
                 return;
             }
-            const response = await axios.post("http://localhost:3000/api/addphone", values, {
+            const response = await axios.post("http://localhost:3002/api/addphone", values, {
                 headers: {
                     'authorization': `Bearer ${token}`
                 }

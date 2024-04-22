@@ -10,7 +10,7 @@ export default function UserPhones() {
     const[msg,setMessage]=useState("");
     const[nameClass,setNameClass]=useState("")
     const navigate = useNavigate();
-    const [code,setCode]=useState(null);
+    const [code,setCode]=useState({});
 
     useEffect(() => {
         const checkAuthentication = async () => {
@@ -25,7 +25,8 @@ export default function UserPhones() {
                         'Authorization': `Bearer ${token}`
                     }
                 });
-                setTelephones(response.data.phones || []); 
+                setTelephones(response.data.row || []); 
+                console.log(response.data.row);
             } catch (error) {
                 console.error('Error fetching phones:', error);
                 navigate("/UserLogin");
@@ -69,7 +70,7 @@ export default function UserPhones() {
             }}
     }
 
-    async function sell(id) { 
+    async function sell(phoneID,ownerID) { 
         try {
             const token = localStorage.getItem('token');
             if (!token) {
@@ -77,12 +78,13 @@ export default function UserPhones() {
                 return;
             }
     
-            const response = await axios.post(`http://localhost:3002/api/generateCode`, { id }, {
+            const response = await axios.post(`http://localhost:3002/api/generateCode`, {phoneID,ownerID}, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
             });
-            setCode(response.data.code);
+            setCode({...code,token:response.data.code,phoneID});
+            console.log(response.data.code)
             
         } catch (error) {
             console.error('Error generating code for selling phone:', error);
@@ -127,8 +129,8 @@ export default function UserPhones() {
             deletePhone(t.id);
         }
     }}>Supprimer</button>
-                                <button id="vendrePhone" onClick={()=>{sell(t.id)}}>Vendre</button>
-                                {code!=null && <input type="text" value={code} disabled/>}
+                                <button id="vendrePhone" onClick={()=>{sell(t.id,t.owner)}}>Vendre</button>
+                                {(code!=null && t.id === code.phoneID) && <input type="text" value={code.token} disabled/>}
                                
                             </td>
                         </tr>

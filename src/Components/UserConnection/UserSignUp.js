@@ -69,7 +69,7 @@ import axios from 'axios';
         {
          try {
             
-            await axios.post('http://localhost:3002/api/signup', {nom: nom,prenom:prenom,email:email, password: pass });
+            await axios.post('http://localhost:3002/api/signUp', {nom: nom,prenom:prenom,email:email, password: pass });
             
            
             navigate("/UserLogin");
