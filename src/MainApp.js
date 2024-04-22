@@ -16,7 +16,7 @@ import UserObjects from './Components/UserProfil/UserObjects';
 import AddFoundItem from './Components/Items/AddItem/addFoundItem';
 import AddLostItem from './Components/Items/AddItem/addLostItem';
 import ItemDetails from './Components/Items/itemDetails';
-
+import ModifyPhone from './Components/Modifyphone';
 import Buyphone from './Components/Buyphone';
 
 import Addphone from './Components/Addphone';
@@ -63,11 +63,13 @@ export default function MainApp(props)
       <Route path='/item/:id' element={<ItemDetails/>}></Route>
 
       <Route path='/Buyphone' element={<Buyphone/>} ></Route>
+      <Route path='/Modifyphone/:id' element={<ModifyPhone/>}></Route>
       <Route path='/UserProfile' element={<UserProfile/>} ></Route>
       <Route path='/UserPhones' element= {<UserPhones/>} ></Route>
       <Route path='/UserObjects' element= {<UserObjects />} ></Route>
       <Route path='/addphone' element= {<Addphone />} ></Route>
       <Route path='/addObject/*' element={<AddItem/>}>
+      
             
       </Route>
 

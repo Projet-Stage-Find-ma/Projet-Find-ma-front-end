@@ -37,11 +37,21 @@
 .Tablephones td {
     padding: 8px;
     border: 1px solid #ddd;
-    text-align: center;
+    
+  
+    
+   
+}
+.Tablephones td {
+    
+    text-align:justify;
+    
+   
 }
 
 .Tablephones th {
     background-color:#97CCE8;
+    text-align:center;
    
 }
 
@@ -49,11 +59,18 @@
    
     padding: 20px;
 }
+.Tablephones .userPhoneButtons{
+   
+    background-color: #97CCE8;
+    
+}
 
 .userPhoneButtons {
     display: flex; 
     justify-content: space-around; 
     width: 100%;
+  
+   
     
 }
 

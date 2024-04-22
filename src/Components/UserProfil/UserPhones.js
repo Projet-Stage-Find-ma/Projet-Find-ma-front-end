@@ -101,12 +101,9 @@ export default function UserPhones() {
             <table  className='Tablephones'>
                 <thead>
                     <tr>
-                        <th>IMEI1</th>
-                        <th>IMEI2</th>
+                        <th>IMEI</th>
                         <th>Serial Number</th>
-                        <th>Marque</th>
-                        <th>Model</th>
-                        <th>Couleur</th>
+                        <th>Les caractéristiques</th>
                         <th>Statut</th>
                         <th>Actions</th>
                     </tr>
@@ -114,12 +111,10 @@ export default function UserPhones() {
                 <tbody>
                     {telephones.map((t, index) => (
                         <tr key={index}>
-                            <td>{t.imei1}</td>
-                            <td>{t.imei2 ? t.imei2 : "-"}</td>
+                            <td>IMEI1: {t.imei1} <br />{t.imei2 ?`IMEI2: ${t.imei2}` : ""}</td>
                             <td>{t.serialNumber}</td>
-                            <td>{t.brand}</td>
-                            <td>{t.model}</td>
-                            <td>{t.color}</td>
+                            <td>Marque: {t.brand} <br />Model: {t.model} <br />Couleur: {t.color}  </td>
+                            
                             <td>{t.status}</td>
                             <td className='userPhoneButtons'>
                                 

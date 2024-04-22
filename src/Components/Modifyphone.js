@@ -19,7 +19,7 @@ export default function ModifyPhone() {
                 return;
             }
             try {
-                const response = await axios.get(`http://localhost:3000/api/getSinglephone/${id}`, {
+                const response = await axios.get(`http://localhost:3002/api/getSinglephone/${id}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -51,7 +51,7 @@ export default function ModifyPhone() {
                 return;
             }
     
-            const response = await axios.post(`http://localhost:3000/api/updatePhone/${id}`, newValues, {
+            const response = await axios.post(`http://localhost:3002/api/updatePhone/${id}`, newValues, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
