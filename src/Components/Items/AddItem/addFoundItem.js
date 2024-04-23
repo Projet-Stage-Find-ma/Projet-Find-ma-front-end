@@ -1,12 +1,14 @@
 import { useState,useRef } from "react";
-import SelectCategory from "./subComponents/selectCategory";
-import SelectCities from "./subComponents/selectCity";
-import SelectSubCategory from "./subComponents/selectSubCategory";
-import imageCompression from "browser-image-compression";
 
+
+
+import imageCompression from "browser-image-compression";
+import { useNavigate } from "react-router-dom";
 
 import './addFoundItem.css'
 import axios from "axios";
+import CategoryDropDown from "../../subComponents/categorySelect";
+import CitiesSelect from "../../subComponents/citiesSelect";
 
 
 
@@ -17,17 +19,17 @@ export default function AddFoundItem()
     const [imgHolder,setImgHolder] = useState('/media/imageHolder.png')
     const fileInputRef = useRef(null);
 
-    const [data,setData] = useState({details:{objectLocation:"onPerson"}});
+    const [data,setData] = useState({category:"",subCategory:"",details:{objectName:"",objectLocation:"onPerson"}});
 
     const [errorMessage,setErrorMessage] = useState("");
 
     const [phoneNumber,setPhoneNumber] = useState('');
     const [email,setEmail] = useState('');
     const [dropLocation,setDropLocation] = useState('');
-
-    const [selectedCategory,setSelectedCategory] = useState('');
+   
     
-
+    
+    const navigate = useNavigate();
 
 
 
@@ -145,7 +147,7 @@ export default function AddFoundItem()
         }
         else
         {
-            console.log(dropLocation);
+            
             delete dataToSend.details.phoneNumber;
             delete dataToSend.details.email;
             if(dropLocation.trim() === "" )
@@ -163,25 +165,37 @@ export default function AddFoundItem()
         if(dataToSend.category === '' || !('category' in dataToSend))
         {
             allowsendingData = false;
-            console.log("category Validation")
+            setErrorMessage("Veuillez sélectionner une catégorie")
         }
 
-        if(dataToSend.subCategory === '' || !('subCategory' in dataToSend))
+        if(dataToSend.subCategory === '' || !('subCategory' in dataToSend) )
         {
             allowsendingData = false;
-            console.log("subCategory validation")
+            setErrorMessage("Veuillez sélectionner une catégorie")
+        }
+        else if(dataToSend.subCategory !== 'Autre')
+        {
+            delete dataToSend.details.customCategory;
         }
 
         if(dataToSend.city === '' || !('city' in dataToSend))
         {
             allowsendingData = false;
-            console.log("city validation")
+            console.log("Veuillez sélectionner une ville")
+        
         }
 
         if(imgHolder === "/media/imageHolder.png")
         {
             allowsendingData = false;
             console.log("Image validation")
+        }
+
+        
+        if(dataToSend.details.objectName === "")
+        {
+            allowsendingData = false;
+            console.log("name validation")
         }
 
         if(allowsendingData)
@@ -197,10 +211,17 @@ export default function AddFoundItem()
                 }
             })
             .then(res => console.log(res.data))
+            .then(() =>  navigate('/itemsList/found'))
             .catch(err => console.error(err))
+            console.log(dataToSend);
+            
+            
+           
+            
         }
         
         
+   
         
 
 
@@ -210,18 +231,20 @@ export default function AddFoundItem()
     //adding categories
     function setCategory(x)
     {
-        delete data.subCategory;
-        setData({...data,category:x})
-        setSelectedCategory(x);
+       
+        setData({...data,category:x.category,subCategory:x.subCategory})
+        console.log(x)
+     
     }
 
-    function setSubCategory(x)
+    function setCustomCategory(x)
     {
-        setData({...data,subCategory:x})
+        setData({...data,details:{...data.details,customCategory:x}})
     }
 
     function setCity(x)
     {
+    
         setData({...data,city:x})
     }
 
@@ -269,9 +292,15 @@ export default function AddFoundItem()
                     <input type="file" name="Image" id="image" ref={fileInputRef} style={{display:'none'}} onChange={handleUploadedImage} accept="image/*" />
                 </div>
 
-                <SelectCategory setCategory = {setCategory}></SelectCategory> 
-                <SelectSubCategory setSubCategory = {setSubCategory} selectedCategory = {selectedCategory} />
-                <SelectCities setCity = {setCity} />
+                <div className="itemNameContainer">
+                    <label htmlFor="itemName">Designation</label>
+                    <input type="text" name="" id="itemName" onChange={(e) => setData({...data,details:{...data.details,objectName:e.target.value}}) } />
+                </div>
+
+                
+                <CategoryDropDown setCategory = {setCategory} setCustomCategory = {setCustomCategory} />
+                <CitiesSelect setCity = {setCity}/>
+             
             </div>
 
             <div id="LocationData" >

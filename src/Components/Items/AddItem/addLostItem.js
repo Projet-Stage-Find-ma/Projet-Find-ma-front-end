@@ -13,12 +13,12 @@ export default function AddLostItem()
     useEffect(() => {
     const fetchImageData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3002/api/data/image`)
+        await axios.get(`http://localhost:3002/api/data/image`)
         .then(res =>
         {
-            setImageData(`http://localhost:3002/${res.data.image}`);
+            setImageData(res.data);
             console.log(res.data);
-            console.log(`http://localhost:3002/${res.data.image}`)
+           
         });
         
         
