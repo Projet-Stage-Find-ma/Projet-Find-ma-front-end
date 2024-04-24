@@ -120,7 +120,7 @@ export default function UserPhones() {
                             <td>{t.status==="perdu" || t.status==="vole" ? <span style={{"color":"red","fontWeight":"bold","fontSize":"20px"}}> <FontAwesomeIcon icon={faTriangleExclamation} /> {t.status}</span> : <span style={{"color":"green","fontSize":"20px","fontWeight":"bold"}}>{t.status}</span>}</td>
                             <td className='userPhoneButtons'>
                                 
-                            <Link to={`/Modifyphone/${t.id}`}>  <button id="modifierPhone" > Afficher </button></Link>
+                            <Link to={`/Modifyphone/${t.id}`}>  <button id="modifierPhone" > Modifier </button></Link>
                                 <button id="supprimerPhone" onClick={() => {
         if (window.confirm("Êtes-vous sûr de vouloir supprimer ce téléphone ?")) {
             deletePhone(t.id);

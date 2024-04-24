@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import axios from "axios";
+import ContacterOwner from "./ContactOwner";
 
 export default function Phone() {
     const [imei, setImei] = useState("");
@@ -30,22 +31,7 @@ export default function Phone() {
             setMsg("Une erreur s'est produite lors de la recherche du téléphone par IMEI");
         });
 
-        // try {
-          
-          
-        //     if (response.data.tel) {
-               
-        //         setTel(response.data.tel);
-        //         setMsg("");
-        //     } else {
-        //         setTel(null);
-        //         setMsg("Aucun téléphone avec cet IMEI trouvé");
-        //     }
-        // } catch (error) {
-        //     console.error('Error fetching phone by IMEI:', error);
-        //     setTel(null);
-        //     setMsg("Une erreur s'est produite lors de la recherche du téléphone par IMEI");
-        // }
+        
     }
     
 
@@ -56,7 +42,7 @@ export default function Phone() {
                 <Link to="/addphone" style={{"color":"white"}}> <FontAwesomeIcon icon={faCirclePlus}/> Ajouter mon IMEI</Link>
             </button>
             <button className="Ajout">
-                <Link to="/Buyphone" style={{"color":"white"}}> <FontAwesomeIcon icon={faCirclePlus}/> Acheter un téléphone</Link>
+                <Link to="/verifyIMEI" style={{"color":"white"}}> <FontAwesomeIcon icon={faCirclePlus}/> Acheter un téléphone</Link>
             </button>
             <div className="containerPhone">
                 <h1>Rechercher un IMEI</h1>
@@ -71,7 +57,7 @@ export default function Phone() {
                         <p>Numéro de téléphone: {tel.tel1}</p>
                         <p>Numéro de téléphone 2: {tel.tel2}</p>
                         <p >Statut: <span style={{color:"red"}}>{tel.status}</span> </p>
-                        <button>Contacter le propriétaire</button>
+                        <ContacterOwner ownerEmail={tel.email}/>
                         </div>
                         <div className="teleinfo">
                         <p>Numéro de série: {tel.serialNumber}</p>
