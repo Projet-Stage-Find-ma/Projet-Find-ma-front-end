@@ -3,6 +3,7 @@ import "./Addphone.css";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Select from 'react-select';
 
 export default function Addphone() {
     const navigate = useNavigate();
@@ -36,6 +37,19 @@ export default function Addphone() {
 
         checkAuthentication();
     }, [navigate]);
+    const [selectedOption, setSelectedOption] = useState(null);
+  const [options,setOptions] = useState([]);
+  useEffect(() =>
+{
+  axios.get("http://localhost:3002/api/data/parametres/phones")
+  .then(res => 
+  {
+    setOptions(res.data)
+    
+  })
+  .catch(error => console.error(error));
+},[])
+
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -78,6 +92,19 @@ export default function Addphone() {
             statut: ""
         });
     }
+    const handleChange2 = (selectedOption) => {
+
+        setSelectedOption(selectedOption);
+        
+        if (selectedOption) {
+          const selectedValue = selectedOption.label;
+          const selectedGroup = options.find(group => group.options.some(opt => opt.value === selectedOption.value));
+          const groupLabel = selectedGroup ? selectedGroup.label : '';
+         
+          setValues({...values,"marque":groupLabel,"model":selectedValue})
+          console.log("values", values)
+        }
+      };
 
     return (
         <div className="globalContainerPhone">
@@ -99,13 +126,44 @@ export default function Addphone() {
                             <input type="text" id="ns" name="serialNumber" onChange={handleChange}/>
                         </div>
                         <div className="label-input-container">
-                            <label htmlFor="marque">Marque:</label>
-                            <input type="text" id="marque" name="marque" onChange={handleChange}/>
+                            <label htmlFor="marque">Marque / Modéle :</label>
+                            <div style={{ width: '100%' }} id="mySelectPhones">
+                            <Select
+                            value={selectedOption}
+                            onChange={handleChange2}
+                            options={options}
+                            placeholder="Choisissez la marque et le modéle de téléphone"
+                            styles={{
+                                control: (provided) => ({
+                                ...provided,
+                                backgroundColor: '#97CCE8', 
+                                color: 'black', 
+                                
+                                }),
+                                indicatorSeparator: () => ({
+                                display: 'none', 
+                                }),
+                                dropdownIndicator: (provided) => ({
+                                ...provided,
+                                color: 'black', 
+                                }),
+                                placeholder: (provided) => ({
+                                ...provided,
+                                color: 'black',
+                                }),
+                                groupHeading: (provided) => ({
+                                    ...provided,
+                                    fontWeight: 'bold', 
+                                    fontSize: '20px',
+                                    color:"#97CCE8"
+                                  }),
+                            }}
+                            />
+
+                            </div>
+                                                
                         </div>
-                        <div className="label-input-container">
-                            <label htmlFor="model">Modèle:</label>
-                            <input type="text" id="model" name="model" onChange={handleChange}/>
-                        </div>
+                        
                         <div className="label-input-container">
                             <label htmlFor="couleur">Couleur:</label>
                             <input type="text" id="couleur" name="couleur" onChange={handleChange}/>

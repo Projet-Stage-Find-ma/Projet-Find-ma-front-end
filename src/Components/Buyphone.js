@@ -52,9 +52,10 @@ export default function Buyphone() {
     }
 
     return <>
-       {msg && <p className={nameClass} style={{"textAlign":"center","marginTop":"20px"}}>{msg}</p>}
+      
         <div className='globalContainerAchat'>
         <div className='myphoneAchat'>
+        {msg && <p className={nameClass} style={{"textAlign":"center","marginTop":"20px"}}>{msg}</p>}
             <form onSubmit={handleSubmit}>
                 <label>Code d'achat: </label>
                 <input type="text" value={code} onChange={(e) => setCode(e.target.value)} />

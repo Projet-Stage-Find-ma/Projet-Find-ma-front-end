@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import "./UserLogin.css";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import axios from 'axios';
 
@@ -70,7 +71,7 @@ export default function UserLogin(props) {
                     <a href="">Mot de passe oublié?</a>
                     <button type="submit">Se connecter</button>
                 </form>
-                <a href="" className="lien2">Nouveau sur Find.ma? Rejoignez-nous! </a>
+                <Link to="/usersignup" className="lien2">Nouveau sur Find.ma? Rejoignez-nous! </Link>
             </div>
           
         </>

@@ -13,7 +13,7 @@ export default function NavBarLogged()
         <h1><Link className="LogoLink" to='/'>Find.ma</Link></h1>
 
         <div className="pagesLinks"> 
-            <Link  className="NavLinks" to="/phone">Telephone</Link>               
+            <Link  className="NavLinks" to="/phone">Téléphone</Link>               
             <Link  className="NavLinks" to="/itemsList/lost">Objets perdus</Link>           
             <Link  className="NavLinks" to="/itemsList/found">Objets Trouvés</Link>
             

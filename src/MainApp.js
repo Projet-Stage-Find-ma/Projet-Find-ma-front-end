@@ -22,6 +22,8 @@ import Buyphone from './Components/Buyphone';
 import Addphone from './Components/Addphone';
 import { useEffect, useState } from 'react';
 import AddItem from './Components/Items/AddItem/addItem';
+import VerifyIMEI from './Components/verifyIMEI';
+
 
 
 export default function MainApp(props)
@@ -61,15 +63,16 @@ export default function MainApp(props)
 
       <Route path='/itemsList/:type' element= {<ItemsSearchList />} ></Route>
       <Route path='/item/:id' element={<ItemDetails/>}></Route>
-
+      
       <Route path='/Buyphone' element={<Buyphone/>} ></Route>
       <Route path='/Modifyphone/:id' element={<ModifyPhone/>}></Route>
       <Route path='/UserProfile' element={<UserProfile/>} ></Route>
       <Route path='/UserPhones' element= {<UserPhones/>} ></Route>
+      <Route path='/verifyIMEI' element={<VerifyIMEI/>} ></Route>
+
       <Route path='/UserObjects' element= {<UserObjects />} ></Route>
       <Route path='/addphone' element= {<Addphone />} ></Route>
       <Route path='/addObject/*' element={<AddItem/>}>
-      
             
       </Route>
 
