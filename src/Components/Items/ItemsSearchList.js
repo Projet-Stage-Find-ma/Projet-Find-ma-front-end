@@ -18,9 +18,9 @@ export default function ItemsSearchList()
 
  
 
-    useEffect(() =>
+    useEffect(  () =>
     {
-        axios.get("http://localhost:3002/api/data/objects")
+         axios.get("http://localhost:3002/api/data/objects")
         .then( res => 
         {
             setLostItems(res.data);
@@ -45,15 +45,18 @@ export default function ItemsSearchList()
     // const currentItems = lostItems.slice(firstItemIndex,lastItemIndex);
 
 
-    function SearchFor(itemName,itemCity,itemCategory)
-    {   
-        console.log(lostItems)
-        console.log(itemName,itemCity,itemCategory)
-        let T = lostItems.filter((i) => i.details.objectName.toLowerCase().includes(itemName.toLowerCase()) && i.city.includes(itemCity)  && i.subCategory.includes(itemCategory.subCategory) && i.type === type)
-        setSearchedList(T);
-         console.log(T)
-    }
+    function SearchFor(itemName, itemCity, itemCategory) {   
+
+        let filteredItems = lostItems.filter((item) => {
+            const nameMatch = itemName ? item.details.objectName.toLowerCase().includes(itemName.toLowerCase()) : true;
+            const cityMatch = itemCity ? item.city === itemCity : true;
+            const categoryMatch = itemCategory ? item.subCategory === itemCategory.subCategory : true;
     
+            return nameMatch && cityMatch && categoryMatch && item.type === type;
+        });
+    
+        setSearchedList(filteredItems);
+    }
 
     return <>
         <h1>{(type === 'lost')?"J'ai perdu":"J'ai trouvé"}</h1>

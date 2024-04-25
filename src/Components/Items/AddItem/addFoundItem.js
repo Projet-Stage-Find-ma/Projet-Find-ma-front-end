@@ -5,7 +5,7 @@ import { useState,useRef } from "react";
 import imageCompression from "browser-image-compression";
 import { useNavigate } from "react-router-dom";
 
-import './addFoundItem.css'
+import styles from './addFoundItem.module.css'
 import axios from "axios";
 import CategoryDropDown from "../../subComponents/categorySelect";
 import CitiesSelect from "../../subComponents/citiesSelect";
@@ -278,23 +278,23 @@ export default function AddFoundItem()
 
 
 
-    return <form id="addFoundItemForm" onSubmit={HandleSubmit} >
+    return <form id={styles.addFoundItemForm} onSubmit={HandleSubmit} >
 
 
         <p>{errorMessage}</p>
-       <div id="addFoundItemContainer">
+       <div id={styles.addFoundItemContainer}>
             <div className="mainData">
-                <div id="ImageContainer" onClick={HandleImageClick} >
-                    <label htmlFor="image">Image:<span className="obligationStar">*</span></label>
-                    <div id="imageHolder">
+                <div id={styles.ImageContainer} onClick={HandleImageClick} >
+                    <label htmlFor="image">Image:</label>
+                    <div id={styles.imageHolder}>
                         <img src={imgHolder} alt="" width='250px' height='250px' />
                     </div>
                     <input type="file" name="Image" id="image" ref={fileInputRef} style={{display:'none'}} onChange={handleUploadedImage} accept="image/*" />
                 </div>
 
-                <div className="itemNameContainer">
+                <div className={styles.itemNameContainer}>
                     <label htmlFor="itemName">Designation</label>
-                    <input type="text" name="" id="itemName" onChange={(e) => setData({...data,details:{...data.details,objectName:e.target.value}}) } />
+                    <input className={styles.AddingObjectDetailsInputs} type="text" name="" id="itemName" onChange={(e) => setData({...data,details:{...data.details,objectName:e.target.value}}) } />
                 </div>
 
                 
@@ -303,29 +303,29 @@ export default function AddFoundItem()
              
             </div>
 
-            <div id="LocationData" >
-                <p id="LocationTitle">Où le propriétaire peut-il trouver cet objet</p>
+            <div id={styles.LocationData} >
+                <p id={styles.LocationTitle}>Où le propriétaire peut-il trouver cet objet</p>
 
-                <div className="LocationChoice">
-                    <div className="radioContainer">
-                        <input className="addFountItemRadio" type="radio" name="location" value="onPerson" id="onPerson"  checked={selectedOption === "onPerson"} onChange={(e) => handleCheckBox(e)}/>
+                <div className={styles.LocationChoice}>
+                    <div className={styles.radioContainer}>
+                        <input className={styles.addFountItemRadio} type="radio" name="location" value="onPerson" id="onPerson"  checked={selectedOption === "onPerson"} onChange={(e) => handleCheckBox(e)}/>
                         <label htmlFor="onPerson"  >Chez moi</label>
                     </div>
-                    <div id="offPersonContainer">
-                        <div  className="radioContainer">
-                            <input className="addFountItemRadio" type="radio" name="location" id="" value="offPerson" checked={selectedOption === "offPerson"} onChange={(e) => handleCheckBox(e)} />
+                    <div id={styles.offPersonContainer}>
+                        <div  className={styles.radioContainer}>
+                            <input className={styles.addFountItemRadio} type="radio" name="location" id="" value="offPerson" checked={selectedOption === "offPerson"} onChange={(e) => handleCheckBox(e)} />
                             <input type="text" name="dropLocation" id="offPersonLocationInput" value={dropLocation}   disabled = {selectedOption !== "offPerson"} onChange={handleDropLocation}     />
                         </div>
-                        <p id="offPersonLocationMessage" >indiquez l'endroit où vous laisserez l'objet, par exemple un commissariat de police <span className="obligationStar">*</span></p>
+                        <p id={styles.offPersonLocationMessage} >indiquez l'endroit où vous laisserez l'objet, par exemple un commissariat de police </p>
                     </div>
 
-                    <div id={(selectedOption === "onPerson")?"OnPersonChosen":"onPersonNotChosen"} >
-                        <div className="AddItemContact" >
-                            <label htmlFor="tel">Telephone:<span className="obligationStar">*</span></label>
-                            <input type="text" name="phoneNumber" id="tel" value={phoneNumber}   onChange={handleContacting} />
+                    <div id={(selectedOption === "onPerson")?styles.OnPersonChosen:styles.onPersonNotChosen} >
+                        <div className={styles.AddItemContact} >
+                            <label htmlFor="tel">Telephone:</label>
+                            <input type="text" name="phoneNumber" id={styles.tel} value={phoneNumber}   onChange={handleContacting} />
                         </div>
 
-                        <div className="AddItemContact" >
+                        <div className={styles.AddItemContact} >
                             <label htmlFor="email">E-mail:</label>
                             <input type="text" name="email" id="email" value={email}   onChange={handleContacting} />
                             <p>Votre e-mail ne sera affiché qu'aux utilisateurs connectés</p>

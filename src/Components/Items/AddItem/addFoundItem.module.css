@@ -16,7 +16,6 @@
 {
     
     padding: 40px;
-    
     width: 100%;
     flex-wrap: wrap;
     display: flex;
@@ -128,9 +127,11 @@
 
 #offPersonContainer
 {
+    
     display: flex;
     flex-direction: column;
-    align-items: center;
+    
+    align-items: start;
 }
 #offPersonLocationInput
 {
@@ -142,7 +143,7 @@
     width: 400px;
 }
 
-#itemName
+.AddingObjectDetailsInputs
 {
     background-color:rgba(217, 217, 217, 0.87) ;
     color: black;

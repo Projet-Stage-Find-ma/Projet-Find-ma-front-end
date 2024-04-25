@@ -29,6 +29,6 @@ function handleChange(selectedOption)
 
     return <div  id='citySelect'>
         <label htmlFor="">Ville</label>
-        <Select className='reactSelect' options={options} onChange={handleChange} value={selectedOption} />
+        <Select className='reactSelect' options={options} onChange={handleChange} value={selectedOption}  placeholder="Choisissez une ville" />
     </div>
 }

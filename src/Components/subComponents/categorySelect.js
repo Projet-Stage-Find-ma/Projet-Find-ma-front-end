@@ -2,7 +2,7 @@
 import Select from 'react-select';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
-import { faL } from '@fortawesome/free-solid-svg-icons';
+
 
 
 export default function CategoryDropDown(props)

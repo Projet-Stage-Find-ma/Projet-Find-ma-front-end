@@ -18,9 +18,9 @@ export default function SearchFilter(props)
 
     const [searchedItem,setSearchedItem] = useState('');
     const [searchedItemCity,setSearchedItemCity] = useState('');
-    const [searchedItemCategory,setSearchedItemCategory] = useState('');
+    
     const [searchedItemSubCategory,setSearchedItemSubCategory] = useState('');
-    const [selectedCategory,setSelectedCategory] = useState('');
+  
 
 
     function handleSearch()
@@ -30,9 +30,9 @@ export default function SearchFilter(props)
 
     function setCategory(cat)
     {
-        console.log(cat);
+      
         setSearchedItemSubCategory(cat);
-        // setSelectedCategory(x)
+        
     }
 
     
@@ -40,7 +40,7 @@ export default function SearchFilter(props)
     function setCity(x)
     {
         setSearchedItemCity(x);
-        console.log(x);
+        
     }
 
     
