@@ -67,7 +67,7 @@ export default function CategoryDropDown(props)
      <label htmlFor="">Categorie:</label>
       <div>
       <Select value={selectedOption} onChange={handleChange} options={options} placeholder="Choisissez un categorie" className='reactSelect'/>
-      {(displayCustomCategory &&  !props.calledInSearch)?<input type="text" name="" id="customCategory" onChange={handleCustomCategory} placeholder="Entrez la catégorie de l'objet"  />:""}
+      {(displayCustomCategory &&  !props.calledInSearch && !props.calledInLostItem)?<input type="text" name="" id="customCategory" onChange={handleCustomCategory} placeholder="Entrez la catégorie de l'objet"  />:""}
 
       </div>
     </div>

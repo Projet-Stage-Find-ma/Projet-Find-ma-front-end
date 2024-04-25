@@ -12,6 +12,7 @@ import CategoryDropDown from "../../subComponents/categorySelect";
 import CitiesSelect from "../../subComponents/citiesSelect";
 
 
+import LostAnimalDetails from "./AddItemSubComponents/lostAnimalDetails";
 
 export default function AddLostItem()
 {
@@ -290,11 +291,12 @@ export default function AddLostItem()
             
             </div>
 
-            <div className="LostItemCategorySelectionContainer">
-            <CategoryDropDown setCategory = {setCategory} setCustomCategory = {setCustomCategory} />
+            <div className={styles.lostItemCategorySelectionContainer}>
+            <CategoryDropDown setCategory = {setCategory} setCustomCategory = {setCustomCategory} calledInLostItem = {true} />
+            {(data.category === 'Animal' && data.subCategory === 'Autre')&&<LostAnimalDetails/>}
+
             </div>
-
-
+             
             </div>
 
        
