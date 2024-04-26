@@ -48,7 +48,7 @@ export default function ItemsSearchList()
     function SearchFor(itemName, itemCity, itemCategory) {   
 
         let filteredItems = lostItems.filter((item) => {
-            const nameMatch = itemName ? item.details.objectName.toLowerCase().includes(itemName.toLowerCase()) : true;
+            const nameMatch = itemName ? item.details.Designation.toLowerCase().includes(itemName.toLowerCase()) : true;
             const cityMatch = itemCity ? item.city === itemCity : true;
             const categoryMatch = itemCategory ? item.subCategory === itemCategory.subCategory : true;
     

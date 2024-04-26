@@ -1,4 +1,4 @@
-import { useState,useRef } from "react";
+import { useState,useRef,useEffect } from "react";
 
 
 
@@ -34,8 +34,18 @@ export default function AddLostItem()
     
     const navigate = useNavigate();
 
+    useEffect(() =>
+    {
+      const checkAuthentication = async () => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+          navigate("/UserLogin");
+          return;  
+      }
+      }
 
-
+      checkAuthentication();
+    })
 
    
   

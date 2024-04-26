@@ -280,6 +280,7 @@ export default function ModifyLostItem()
                 }
             })
             .then(res => console.log(res.data))
+            .then(() => navigate('/UserObjects'))
             .catch(err => console.error(err))
 
           
