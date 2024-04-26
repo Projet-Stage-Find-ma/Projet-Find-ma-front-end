@@ -21,18 +21,39 @@ export default function CategoryDropDown(props)
         axios.get("http://localhost:3002/api/data/parametres/categories")
         .then(res => 
         {
-            setOptions(res.data)
-            
+          setOptions(res.data)
+         
         })
+        .then( () => 
+      {
+        if(props.data)
+        {
+          let newOption = {};
+          if(props.data.subCategory !== 'Autre')
+          {
+            newOption = {label:props.data.subCategory,value:props.data.subCategory};
+          }
+          else
+          {
+            newOption = {label:props.data.subCategory,value:`${props.data.category}${props.data.subCategory}`}
+          }
+
+          setSelectedOption(newOption);
+        }
+
+      })
+        
         .catch(error => console.error(error));
-    },[])
-
+    },[props.data])
+   
+    
     const handleChange = (selectedOption) => {
-
+      
+      
         setSelectedOption(selectedOption);
         
         if (selectedOption) {
-
+          
           if(selectedOption.label === 'Autre')
           {
             setDisplayCustomCategory(true);
@@ -63,7 +84,7 @@ export default function CategoryDropDown(props)
     
  
   return (
-    <div id='categorySelect' >
+    <div className="MyReactSelect" >
      <label htmlFor="">Categorie:</label>
       <div>
       <Select value={selectedOption} onChange={handleChange} options={options} placeholder="Choisissez un categorie" className='reactSelect'/>

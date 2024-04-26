@@ -37,13 +37,13 @@
   }
 }
 
-#categorySelect
+
+
+.MyReactSelect
 {
   display: flex;
-  
   align-items: center;
 }
-
 .reactSelect
 {
   
@@ -72,3 +72,4 @@
   display: flex;
   align-items: center;
 }
+

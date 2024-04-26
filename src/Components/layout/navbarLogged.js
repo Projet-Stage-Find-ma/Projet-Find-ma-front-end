@@ -14,8 +14,8 @@ export default function NavBarLogged()
 
         <div className="pagesLinks"> 
             <Link  className="NavLinks" to="/phone">Téléphone</Link>               
-            <Link  className="NavLinks" to="/itemsList/lost">Objets perdus</Link>           
-            <Link  className="NavLinks" to="/itemsList/found">Objets Trouvés</Link>
+            <Link  className="NavLinks" to="/itemsList/lost">J'ai perdus</Link>           
+            <Link  className="NavLinks" to="/itemsList/found">J'ai trouvé</Link>
             
 
         </div>

@@ -1,24 +1,28 @@
-import { useState,useRef } from "react";
+import { useState,useRef,useEffect } from "react";
 
 
 
 import imageCompression from "browser-image-compression";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
 
-import styles from './addLostItem.module.css'
+import styles from '../Items/AddItem/addLostItem.module.css'
+
 
 import axios from "axios";
-import CategoryDropDown from "../../subComponents/categorySelect";
-import CitiesSelect from "../../subComponents/citiesSelect";
+import CitiesSelect from "../subComponents/citiesSelect";
+import CategoryDropDown from "../subComponents/categorySelect";
 
 
-import LostAnimalDetails from "./AddItemSubComponents/lostAnimalDetails";
-import LostPhoneDetails from "./AddItemSubComponents/lostPhoneDetails";
+import LostAnimalDetails from "../Items/AddItem/AddItemSubComponents/lostAnimalDetails";
+import LostPhoneDetails from "../Items/AddItem/AddItemSubComponents/lostPhoneDetails";
 
-export default function AddLostItem()
+export default function ModifyLostItem()
 {
 
-  
+    const { id } = useParams();
+ 
+    const [object,setObject] = useState('');
+
     const [imgHolder,setImgHolder] = useState('/media/imageHolder.png')
     const fileInputRef = useRef(null);
 
@@ -34,7 +38,33 @@ export default function AddLostItem()
     
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const checkAuthentication = async () => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                navigate("/UserLogin");
+                return;
+            }
+            try {
+                const response = await axios.get(`http://localhost:3002/api/getObjectData/${id}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                setData(response.data || {});
+                setPhoneNumber(response.data.details.phoneNumber)
+                setEmail(response.data.details.email || "")
+                setImgHolder(`http://localhost:3002/${response.data.image}`)
+              
+                
+            } catch (error) {
+                console.error('Error fetching phone:', error);
+                // navigate("/UserLogin");
+            }
+        };
 
+        checkAuthentication();
+    }, [id, navigate]);
 
 
    
@@ -132,6 +162,8 @@ export default function AddLostItem()
               
             if(email.trim() !== "")
               dataToSend = {...dataToSend,details:{...dataToSend.details,email}};
+            else
+                delete dataToSend.details.email;
             allowsendingData = true;
           }
         
@@ -240,16 +272,17 @@ export default function AddLostItem()
 
             
             const token =  localStorage.getItem('token');
-            
-            axios.post(`http://localhost:3002/api/data/createFoundObject`,dataToSend,{
+            console.log(dataToSend)
+            axios.post(`http://localhost:3002/api/modifyObject/${dataToSend.id}`,dataToSend,{
                 headers:{
                     'Content-Type':'multipart/form-data',
                     'Authorization':`Bearer ${token}`
                 }
             })
             .then(res => console.log(res.data))
-            .then(() =>  navigate('/itemsList/lost'))
             .catch(err => console.error(err))
+
+          
            
             
             
@@ -330,11 +363,11 @@ export default function AddLostItem()
 
 
 
-    return <form  className={styles.lostItemform} onSubmit={HandleSubmit} >
+    return <form  className={styles.lostItemform}onSubmit={HandleSubmit} >
 
 
       {errorMessage !== "" && <p className="alert alert-danger text-center">{errorMessage}</p>}
-          <div className={styles.addLostItemMainContainer}>
+       <div  className={styles.addLostItemMainContainer}>
             <div className="mainData">
                 <div id={styles.ImageContainer} onClick={HandleImageClick} >
                     <label htmlFor="image">Image:<span className="obligationStar">*</span></label>
@@ -346,32 +379,32 @@ export default function AddLostItem()
 
                 <div className="itemNameContainer">
                     <label htmlFor="itemName">Designation</label>
-                    <input className={styles.dataInputs}  type="text" name="" id="itemName"onChange={(e) => setData({...data,details:{...data.details,Designation:e.target.value}}) } />
+                    <input className={styles.dataInputs} value={data.details.Designation}  type="text" name="" id="itemName"onChange={(e) => setData({...data,details:{...data.details,Designation:e.target.value}}) } />
                 </div>
 
                 <div className="lostItemLocationContainer">
                     <label htmlFor="lostItemLocation">Endroit:</label>
-                    <input className={styles.dataInputs}  type="text" name="" id="lostItemLocation"  onChange={(e) => setData({...data,details:{...data.details,Endroit:e.target.value}}) } placeholder="Où avez-vous perdu l'objet" />
+                    <input className={styles.dataInputs} value={data.details.Endroit}  type="text" name="" id="lostItemLocation"  onChange={(e) => setData({...data,details:{...data.details,Endroit:e.target.value}}) } placeholder="Où avez-vous perdu l'objet" />
                 </div>
 
-                <CitiesSelect setCity = {setCity}/>
+                <CitiesSelect data= {data} setCity = {setCity}/>
 
                 <div id={styles.itemLosingDescirptionContainer}>
                   <label htmlFor="">Desription:</label>
-                  <textarea className={styles.dataInputs}  onChange= {e => setData({...data,details:{...data.details,Description:e.target.value}})} name="" id="" cols="30" rows="10" placeholder="Vous pouvez écrire plus de détails sur l'objet que vous avez perdu pour aider à l'identifier"></textarea>
+                  <textarea className={styles.dataInputs}  value={data.details.Description} onChange= {e => setData({...data,details:{...data.details,Description:e.target.value}})} name="" id="" cols="30" rows="10" placeholder="Vous pouvez écrire plus de détails sur l'objet que vous avez perdu pour aider à l'identifier"></textarea>
                 </div>
 
             
             </div>
 
             <div className={styles.secondaryContainer}>
-                <div className={styles.lostItemCategorySelectionContainer}>
-                  <CategoryDropDown setCategory = {setCategory} setCustomCategory = {setCustomCategory} calledInLostItem = {true} />
-                  {(data.category === 'Animal' && data.subCategory === 'Autre')&&<LostAnimalDetails setAnimal = {setAnimal} />}
-                  {(data.category === 'Electronique' && data.subCategory === 'Telephone')&&<LostPhoneDetails setModel = {setModel} setPhoneColor={setPhoneColor} setImei = {setImei} setSerialNumber = {setSerialNumber}/>}
-                </div>
+              <div className={styles.lostItemCategorySelectionContainer}>
+                <CategoryDropDown setCategory = {setCategory} setCustomCategory = {setCustomCategory} calledInLostItem = {true} data = {data} />
+                {(data.category === 'Animal' && data.subCategory === 'Autre')&&<LostAnimalDetails setAnimal = {setAnimal} modifyData = {data.details} />}
+                {(data.category === 'Electronique' && data.subCategory === 'Telephone')&&<LostPhoneDetails setModel = {setModel} setPhoneColor={setPhoneColor} setImei = {setImei} setSerialNumber = {setSerialNumber}  modifyData = {data.details}/>}
+              </div>
 
-                <div className={styles.lostItemContact}>
+              <div className={styles.lostItemContact}>
                   <div className={styles.AddItemContact} >
                       <label htmlFor="tel">Telephone:</label>
                       <input type="text" name="phoneNumber" id={styles.tel} value={phoneNumber}   onChange={handleContacting} />
@@ -385,11 +418,11 @@ export default function AddLostItem()
 
               </div>
             </div>
-            
-          </div>
+             
+            </div>
 
-          <button className="ConfirmButtton">Confirmer</button>
+       
 
-        
-  </form>
+        <button className="ConfirmButtton">Confirmer</button>
+    </form>
 }

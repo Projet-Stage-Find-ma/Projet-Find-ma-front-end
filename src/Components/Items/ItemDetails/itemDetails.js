@@ -5,6 +5,9 @@ import './itemDetails.css'
 
 import ItemOnPerson from "./itemOnPerson";
 import axios from "axios";
+import IsLost from "./itemDetailsSubComponents/isLost";
+import IsPhone from "./itemDetailsSubComponents/isPhone";
+import IsAnimal from "./itemDetailsSubComponents/isAnimal";
 
 export default function ItemDetails()
 {
@@ -22,7 +25,7 @@ export default function ItemDetails()
     axios.get(`http://localhost:3002/api/data/ObjectDetails/${id}`)
     .then(res =>
     {
-        console.log(res.data[0]);
+        
         setItemData(res.data[0])
 
 
@@ -43,7 +46,7 @@ export default function ItemDetails()
     }
 
     return <div id="MainContainer" >
-        <p id="ItemDetailsName">{itemData.details.objectName}</p>
+        <p id="ItemDetailsName">{itemData.details.Designation}</p>
         
         <div  className="itemDetails">
             <div className="imageContainer">
@@ -56,6 +59,7 @@ export default function ItemDetails()
                     <p><span className="labels">Catégorie:</span>{itemData.subCategory}</p>
                     <p><span className="labels">Ville:</span>{itemData.city}</p>
                     <p><span className="labels">Date:</span>{itemDate}</p>
+                    {itemData.type === 'lost' && <IsLost thisIitemData = {itemData}/>}
                 </div>
                 <div className="itemDynamicData">
                     { itemData.details.phoneNumber&&<ItemOnPerson contactPhone = {itemData.details.phoneNumber} contactEmail = {itemData.details.email} />}
@@ -64,10 +68,12 @@ export default function ItemDetails()
 
             </div>
             
-
+            {itemData.subCategory ==="Telephone" && <IsPhone thisIitemData = {itemData}/>}
+            {itemData.category === "Animal" && itemData.subCategory === "Autre" && <IsAnimal thisIitemData = {itemData}/> }
            
         </div>
 
+        
         
         
      </div>
