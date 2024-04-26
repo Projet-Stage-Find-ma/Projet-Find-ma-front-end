@@ -33,7 +33,7 @@ export default function UserPhones() {
               
             } catch (error) {
                 console.error('Error fetching phones:', error);
-                navigate("/UserLogin");
+               
             }
         };
 
