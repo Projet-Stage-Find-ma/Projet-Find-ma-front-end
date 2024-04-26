@@ -21,26 +21,34 @@ export default function CategoryDropDown(props)
         axios.get("http://localhost:3002/api/data/parametres/categories")
         .then(res => 
         {
-            setOptions(res.data)
-
-            
-            
-            
+          setOptions(res.data)
+         
         })
-        .then(() =>
+        .then( () => 
       {
-        if(props.modifyData)
-            {
-              
-              console.log(props.modifyData)
-              console.log(props.modifyData.subCategory)
+        if(props.data)
+        {
+          let newOption = {};
+          if(props.data.subCategory !== 'Autre')
+          {
+            newOption = {label:props.data.subCategory,value:props.data.subCategory};
+          }
+          else
+          {
+            newOption = {label:props.data.subCategory,value:`${props.data.category}${props.data.subCategory}`}
+          }
 
-            }
+          setSelectedOption(newOption);
+        }
+
       })
+        
         .catch(error => console.error(error));
-    },[])
+    },[props.data])
    
+    
     const handleChange = (selectedOption) => {
+      
       
         setSelectedOption(selectedOption);
         

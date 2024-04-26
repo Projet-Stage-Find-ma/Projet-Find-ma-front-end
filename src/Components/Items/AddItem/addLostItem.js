@@ -330,11 +330,11 @@ export default function AddLostItem()
 
 
 
-    return <form id="addFoundItemForm" onSubmit={HandleSubmit} >
+    return <form  className={styles.lostItemform} onSubmit={HandleSubmit} >
 
 
       {errorMessage !== "" && <p className="alert alert-danger text-center">{errorMessage}</p>}
-       <div id={styles.addLostItemMainContainer}>
+          <div className={styles.addLostItemMainContainer}>
             <div className="mainData">
                 <div id={styles.ImageContainer} onClick={HandleImageClick} >
                     <label htmlFor="image">Image:<span className="obligationStar">*</span></label>
@@ -365,13 +365,13 @@ export default function AddLostItem()
             </div>
 
             <div className={styles.secondaryContainer}>
-              <div className={styles.lostItemCategorySelectionContainer}>
-                <CategoryDropDown setCategory = {setCategory} setCustomCategory = {setCustomCategory} calledInLostItem = {true} />
-                {(data.category === 'Animal' && data.subCategory === 'Autre')&&<LostAnimalDetails setAnimal = {setAnimal} />}
-                {(data.category === 'Electronique' && data.subCategory === 'Telephone')&&<LostPhoneDetails setModel = {setModel} setPhoneColor={setPhoneColor} setImei = {setImei} setSerialNumber = {setSerialNumber}/>}
-              </div>
+                <div className={styles.lostItemCategorySelectionContainer}>
+                  <CategoryDropDown setCategory = {setCategory} setCustomCategory = {setCustomCategory} calledInLostItem = {true} />
+                  {(data.category === 'Animal' && data.subCategory === 'Autre')&&<LostAnimalDetails setAnimal = {setAnimal} />}
+                  {(data.category === 'Electronique' && data.subCategory === 'Telephone')&&<LostPhoneDetails setModel = {setModel} setPhoneColor={setPhoneColor} setImei = {setImei} setSerialNumber = {setSerialNumber}/>}
+                </div>
 
-              <div className={styles.lostItemContact}>
+                <div className={styles.lostItemContact}>
                   <div className={styles.AddItemContact} >
                       <label htmlFor="tel">Telephone:</label>
                       <input type="text" name="phoneNumber" id={styles.tel} value={phoneNumber}   onChange={handleContacting} />
@@ -385,11 +385,11 @@ export default function AddLostItem()
 
               </div>
             </div>
-             
-            </div>
+            
+          </div>
 
-       
+          <button className="ConfirmButtton">Confirmer</button>
 
-        <button className="ConfirmButtton">Confirmer</button>
-    </form>
+        
+  </form>
 }

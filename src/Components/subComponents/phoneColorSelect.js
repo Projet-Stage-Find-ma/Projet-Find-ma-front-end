@@ -10,7 +10,7 @@ export default function PhoneColorsSelect(props)
 
     useEffect(() =>
 {
-    axios.get('http://localhost:3002/api/data/parametres/phoneColors')
+    axios.get('http://localhost:3002/api/data/parametres/colors')
     .then(res => {
         setOptions(res.data)
   

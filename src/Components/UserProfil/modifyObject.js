@@ -7,6 +7,7 @@ import { useNavigate,useParams } from "react-router-dom";
 
 import styles from '../Items/AddItem/addLostItem.module.css'
 
+
 import axios from "axios";
 import CitiesSelect from "../subComponents/citiesSelect";
 import CategoryDropDown from "../subComponents/categorySelect";
@@ -271,18 +272,17 @@ export default function ModifyLostItem()
 
             
             const token =  localStorage.getItem('token');
-            
-            // axios.post(`http://localhost:3002/api/data/createFoundObject`,dataToSend,{
-            //     headers:{
-            //         'Content-Type':'multipart/form-data',
-            //         'Authorization':`Bearer ${token}`
-            //     }
-            // })
-            // .then(res => console.log(res.data))
-            // .then(() =>  navigate('/itemsList/lost'))
-            // .catch(err => console.error(err))
-
             console.log(dataToSend)
+            axios.post(`http://localhost:3002/api/modifyObject/${dataToSend.id}`,dataToSend,{
+                headers:{
+                    'Content-Type':'multipart/form-data',
+                    'Authorization':`Bearer ${token}`
+                }
+            })
+            .then(res => console.log(res.data))
+            .catch(err => console.error(err))
+
+          
            
             
             
@@ -363,11 +363,11 @@ export default function ModifyLostItem()
 
 
 
-    return <form id="addFoundItemForm" onSubmit={HandleSubmit} >
+    return <form  className={styles.lostItemform}onSubmit={HandleSubmit} >
 
 
       {errorMessage !== "" && <p className="alert alert-danger text-center">{errorMessage}</p>}
-       <div id={styles.addLostItemMainContainer}>
+       <div  className={styles.addLostItemMainContainer}>
             <div className="mainData">
                 <div id={styles.ImageContainer} onClick={HandleImageClick} >
                     <label htmlFor="image">Image:<span className="obligationStar">*</span></label>
@@ -387,7 +387,7 @@ export default function ModifyLostItem()
                     <input className={styles.dataInputs} value={data.details.Endroit}  type="text" name="" id="lostItemLocation"  onChange={(e) => setData({...data,details:{...data.details,Endroit:e.target.value}}) } placeholder="Où avez-vous perdu l'objet" />
                 </div>
 
-                <CitiesSelect setCity = {setCity}/>
+                <CitiesSelect data= {data} setCity = {setCity}/>
 
                 <div id={styles.itemLosingDescirptionContainer}>
                   <label htmlFor="">Desription:</label>
@@ -399,7 +399,7 @@ export default function ModifyLostItem()
 
             <div className={styles.secondaryContainer}>
               <div className={styles.lostItemCategorySelectionContainer}>
-                <CategoryDropDown setCategory = {setCategory} setCustomCategory = {setCustomCategory} calledInLostItem = {true} modifyData = {data} />
+                <CategoryDropDown setCategory = {setCategory} setCustomCategory = {setCustomCategory} calledInLostItem = {true} data = {data} />
                 {(data.category === 'Animal' && data.subCategory === 'Autre')&&<LostAnimalDetails setAnimal = {setAnimal} modifyData = {data.details} />}
                 {(data.category === 'Electronique' && data.subCategory === 'Telephone')&&<LostPhoneDetails setModel = {setModel} setPhoneColor={setPhoneColor} setImei = {setImei} setSerialNumber = {setSerialNumber}  modifyData = {data.details}/>}
               </div>
