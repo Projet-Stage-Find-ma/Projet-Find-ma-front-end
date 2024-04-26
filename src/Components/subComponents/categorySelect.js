@@ -63,7 +63,7 @@ export default function CategoryDropDown(props)
     
  
   return (
-    <div id='categorySelect' >
+    <div className="MyReactSelect" >
      <label htmlFor="">Categorie:</label>
       <div>
       <Select value={selectedOption} onChange={handleChange} options={options} placeholder="Choisissez un categorie" className='reactSelect'/>

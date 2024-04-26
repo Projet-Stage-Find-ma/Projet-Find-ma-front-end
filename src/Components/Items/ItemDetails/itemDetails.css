@@ -4,10 +4,12 @@
 #MainContainer
 {
     display: flex;
-    height: 80vh;
+    min-height: 80vh;
     flex-direction: column;
     align-items: center;
     padding: 10%;
+ 
+    
 }
 
 
@@ -148,4 +150,19 @@ width: 100%;
 
     font-family: 'Inter';
     font-weight: bolder;
+}
+
+
+
+.singleDataContainer
+{
+    display: flex;
+}
+
+.isContainer
+{
+    
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
 }

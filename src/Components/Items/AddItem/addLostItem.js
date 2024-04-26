@@ -13,21 +13,22 @@ import CitiesSelect from "../../subComponents/citiesSelect";
 
 
 import LostAnimalDetails from "./AddItemSubComponents/lostAnimalDetails";
+import LostPhoneDetails from "./AddItemSubComponents/lostPhoneDetails";
 
 export default function AddLostItem()
 {
 
-    const [selectedOption, setSelectedOption] = useState('onPerson');
+  
     const [imgHolder,setImgHolder] = useState('/media/imageHolder.png')
     const fileInputRef = useRef(null);
 
-    const [data,setData] = useState({category:"",subCategory:"",details:{objectName:"",objectLocation:"onPerson"}});
+    const [data,setData] = useState({category:"",subCategory:"",details:{Designation:"",Endroit:"",Description:""},type:"lost"});
 
     const [errorMessage,setErrorMessage] = useState("");
 
     const [phoneNumber,setPhoneNumber] = useState('');
     const [email,setEmail] = useState('');
-    const [dropLocation,setDropLocation] = useState('');
+    
    
     
     
@@ -36,32 +37,8 @@ export default function AddLostItem()
 
 
 
-    //Handling checked radio buttons
-    function handleCheckBox(e)
-    {
-        
-        if(e.target.value === "onPerson")
-        {
-            delete data.details.dropLocation;
-            setDropLocation("");
-            setSelectedOption("onPerson")
-            setData({...data,details:{...data.details,objectLocation:"onPerson"}})
-            
-        }
-        else if(e.target.value === 'offPerson')
-        {
-            delete data.details.phoneNumber;
-            delete data.details.email;
-            setPhoneNumber("");
-            setEmail("");
-            setSelectedOption("offPerson")
-            setData({...data,details:{...data.details,objectLocation:"offPerson"}})
-            
-        }
-
-        
-            
-    }
+   
+  
 
 
     // Displaying the uploaded Image to the user
@@ -117,6 +94,21 @@ export default function AddLostItem()
         fileInputRef.current.click();
     }
 
+    
+    //adding contact info 
+    function handleContacting(e)
+    {
+        
+        if(e.target.name === 'phoneNumber')
+        {
+            setPhoneNumber(e.target.value);
+        }
+
+        if(e.target.name === 'email')
+        {
+            setEmail(e.target.value)  
+        }
+    }
 
     function HandleSubmit(event)
     {
@@ -126,43 +118,27 @@ export default function AddLostItem()
         event.preventDefault();
         
        
-        if(selectedOption === 'onPerson')
-        {
-            delete dataToSend.details.dropLocation;
+      
             
-            if(phoneNumber.trim() === "")
-             {
-                setErrorMessage("Veuillez saisir un numéro de téléphone afin que le propriétaire puisse vous contacter")
-                allowsendingData = false;
-             }
-
-            else
-            {
-               setErrorMessage("");
-               dataToSend = {...dataToSend,details:{...dataToSend.details,phoneNumber}}
-               
-               if(email.trim() !== "")
-               dataToSend = {...dataToSend,details:{...dataToSend.details,email}}  
-
-               allowsendingData = true;
-            }
-        }
-        else
-        {
+          if(phoneNumber.trim() === "")
+          {
+            setErrorMessage("Veuillez saisir un numéro de téléphone afin que le propriétaire puisse vous contacter")
+            allowsendingData = false;
+          }
+          else
+          {
+            setErrorMessage("");
+            dataToSend = {...dataToSend,details:{...dataToSend.details,phoneNumber}}
+              
+            if(email.trim() !== "")
+              dataToSend = {...dataToSend,details:{...dataToSend.details,email}};
+            allowsendingData = true;
+          }
+        
+         
+  
+          
             
-            delete dataToSend.details.phoneNumber;
-            delete dataToSend.details.email;
-            if(dropLocation.trim() === "" )
-            {
-                allowsendingData = false;
-                setErrorMessage("Merci de préciser l'endroit où vous déposerez l'objet que vous avez trouvé")
-            }
-            else
-            {
-                setErrorMessage("");
-                dataToSend = {...dataToSend,details:{...dataToSend.details,dropLocation}}  
-            }
-        }
 
         if(dataToSend.category === '' || !('category' in dataToSend))
         {
@@ -180,25 +156,84 @@ export default function AddLostItem()
             delete dataToSend.details.customCategory;
         }
 
+       
+
+         
+        if(dataToSend.category === "Animal" && dataToSend.subCategory === "Autre")
+        {
+          if(dataToSend.details.animalName === "" || !('animalName' in dataToSend.details)  )
+          {
+            allowsendingData = false;
+            setErrorMessage("Vous devez saisir le nom de l'animal")
+          }
+
+          if(dataToSend.details.animalColor === "" || !('animalColor' in dataToSend.details)  )
+          {
+            allowsendingData = false;
+            setErrorMessage("Vous devez saisir la couleur de l'animal")
+          }
+        }
+        else
+        {
+          delete dataToSend.details.animalName;
+          delete dataToSend.details.animalRace;
+          delete dataToSend.details.animalColor;
+   
+        }
+        
+
+        if(dataToSend.category === "Electronique" && dataToSend.subCategory === "Telephone")
+        {
+          if(dataToSend.details.model === "" || !('model' in dataToSend.details)  )
+          {
+            allowsendingData = false;
+            setErrorMessage("Vous devez choisir le model de votre telephone")
+          }
+        }
+        else
+        {
+          delete dataToSend.details.marque;
+          delete dataToSend.details.model;
+          delete dataToSend.details.serialNumber;
+          delete dataToSend.details.imei;
+          delete dataToSend.details.phoneColor;
+        }
+
+        if(dataToSend.details.Description === "" )
+        {
+            allowsendingData = false;
+            setErrorMessage("Veuillez entrer un description")
+        }
+
         if(dataToSend.city === '' || !('city' in dataToSend))
         {
             allowsendingData = false;
-            console.log("Veuillez sélectionner une ville")
+       
+            setErrorMessage("Veuillez sélectionner une ville")
         
+        }
+
+       
+        if(dataToSend.details.Endroit === "" )
+        {
+            allowsendingData = false;
+            setErrorMessage("Veuillez entrer un Endroit")
+        }
+
+        
+        if(dataToSend.details.Designation === "")
+        {
+          allowsendingData = false;
+          setErrorMessage("Veuillez entrer une designation")
         }
 
         if(imgHolder === "/media/imageHolder.png")
         {
-            allowsendingData = false;
-            console.log("Image validation")
+          allowsendingData = false;
+          setErrorMessage("Veuillez ajouter une Image")
         }
 
-        
-        if(dataToSend.details.objectName === "")
-        {
-            allowsendingData = false;
-            console.log("name validation")
-        }
+
 
         if(allowsendingData)
         {
@@ -213,9 +248,9 @@ export default function AddLostItem()
                 }
             })
             .then(res => console.log(res.data))
-            .then(() =>  navigate('/itemsList/found'))
+            .then(() =>  navigate('/itemsList/lost'))
             .catch(err => console.error(err))
-            console.log(dataToSend);
+           
             
             
            
@@ -230,14 +265,52 @@ export default function AddLostItem()
 
     }
 
+
     //adding categories
     function setCategory(x)
     {
-       
-        setData({...data,category:x.category,subCategory:x.subCategory})
-        console.log(x)
+        
+      setData({...data,category:x.category,subCategory:x.subCategory})
+   
+    }
+
+    function setImei(x)
+    {
+      setData({...data,details:{...data.details,imei:x}})
+      
+    }
+
+    function setSerialNumber(x)
+    {
+      setData({...data,details:{...data.details,serialNumber:x}})
+      
+    }
+    function setModel(x)
+    { 
+      setData({...data,details:{...data.details,marque:x.Marque,model:x.Model}})
+    }
+
+    function setPhoneColor(x)
+    {
+      setData({...data,details:{...data.details,phoneColor:x}})
+    }
+
+    function setAnimal(x)
+    {
+    
+      
+      if(x.key === 'Nom')
+      setData({...data,details:{...data.details,animalName:x.value}})
+
+      if(x.key === 'Race')
+      setData({...data,details:{...data.details,animalRace:x.value}})
+
+      if(x.key === 'Couleur')
+      setData({...data,details:{...data.details,animalColor:x.value}})
      
     }
+
+   
 
     function setCustomCategory(x)
     {
@@ -250,7 +323,7 @@ export default function AddLostItem()
         setData({...data,city:x})
     }
 
-
+    
    
 
     
@@ -260,7 +333,7 @@ export default function AddLostItem()
     return <form id="addFoundItemForm" onSubmit={HandleSubmit} >
 
 
-        <p>{errorMessage}</p>
+      {errorMessage !== "" && <p className="alert alert-danger text-center">{errorMessage}</p>}
        <div id={styles.addLostItemMainContainer}>
             <div className="mainData">
                 <div id={styles.ImageContainer} onClick={HandleImageClick} >
@@ -273,28 +346,44 @@ export default function AddLostItem()
 
                 <div className="itemNameContainer">
                     <label htmlFor="itemName">Designation</label>
-                    <input className={styles.dataInputs}  type="text" name="" id="itemName"onChange={(e) => setData({...data,details:{...data.details,objectName:e.target.value}}) } />
+                    <input className={styles.dataInputs}  type="text" name="" id="itemName"onChange={(e) => setData({...data,details:{...data.details,Designation:e.target.value}}) } />
                 </div>
 
                 <div className="lostItemLocationContainer">
                     <label htmlFor="lostItemLocation">Endroit:</label>
-                    <input className={styles.dataInputs}  type="text" name="" id="lostItemLocation"  onChange={(e) => setData({...data,details:{...data.details,objectLosingLocation:e.target.value}}) } placeholder="Où avez-vous perdu l'objet" />
+                    <input className={styles.dataInputs}  type="text" name="" id="lostItemLocation"  onChange={(e) => setData({...data,details:{...data.details,Endroit:e.target.value}}) } placeholder="Où avez-vous perdu l'objet" />
                 </div>
 
                 <CitiesSelect setCity = {setCity}/>
 
                 <div id={styles.itemLosingDescirptionContainer}>
                   <label htmlFor="">Desription:</label>
-                  <textarea className={styles.dataInputs} name="" id="" cols="30" rows="10" placeholder="Vous pouvez écrire plus de détails sur l'objet que vous avez perdu pour aider à l'identifier"></textarea>
+                  <textarea className={styles.dataInputs}  onChange= {e => setData({...data,details:{...data.details,Description:e.target.value}})} name="" id="" cols="30" rows="10" placeholder="Vous pouvez écrire plus de détails sur l'objet que vous avez perdu pour aider à l'identifier"></textarea>
                 </div>
 
             
             </div>
 
-            <div className={styles.lostItemCategorySelectionContainer}>
-            <CategoryDropDown setCategory = {setCategory} setCustomCategory = {setCustomCategory} calledInLostItem = {true} />
-            {(data.category === 'Animal' && data.subCategory === 'Autre')&&<LostAnimalDetails/>}
+            <div className={styles.secondaryContainer}>
+              <div className={styles.lostItemCategorySelectionContainer}>
+                <CategoryDropDown setCategory = {setCategory} setCustomCategory = {setCustomCategory} calledInLostItem = {true} />
+                {(data.category === 'Animal' && data.subCategory === 'Autre')&&<LostAnimalDetails setAnimal = {setAnimal} />}
+                {(data.category === 'Electronique' && data.subCategory === 'Telephone')&&<LostPhoneDetails setModel = {setModel} setPhoneColor={setPhoneColor} setImei = {setImei} setSerialNumber = {setSerialNumber}/>}
+              </div>
 
+              <div className={styles.lostItemContact}>
+                  <div className={styles.AddItemContact} >
+                      <label htmlFor="tel">Telephone:</label>
+                      <input type="text" name="phoneNumber" id={styles.tel} value={phoneNumber}   onChange={handleContacting} />
+                  </div>
+
+                  <div className={styles.AddItemContact} >
+                      <label htmlFor="email">E-mail:</label>
+                      <input type="text" name="email" id="email" value={email}   onChange={handleContacting} />
+                      <p>Votre e-mail ne sera affiché pas aux utilisateurs</p>
+                </div>
+
+              </div>
             </div>
              
             </div>

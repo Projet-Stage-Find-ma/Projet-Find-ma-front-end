@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Select from 'react-select';
 
-export default function CitiesSelect(props)
+export default function PhoneColorsSelect(props)
 {
     const [selectedOption, setSelectedOption] = useState(null);
     const [options,setOptions] = useState([]);
@@ -10,7 +10,7 @@ export default function CitiesSelect(props)
 
     useEffect(() =>
 {
-    axios.get('http://localhost:3002/api/data/parametres/cities')
+    axios.get('http://localhost:3002/api/data/parametres/phoneColors')
     .then(res => {
         setOptions(res.data)
   
@@ -22,13 +22,13 @@ export default function CitiesSelect(props)
 function handleChange(selectedOption)
 {
     setSelectedOption(selectedOption)
-    props.setCity(selectedOption.value)
+    props.setPhoneColor(selectedOption.value)
 }
 
 
 
-    return <div  className="MyReactSelect">
-        <label htmlFor="">Ville</label>
-        <Select className='reactSelect' options={options} onChange={handleChange} value={selectedOption}  placeholder="Choisissez une ville" />
+    return <div  id='phoneColorSelect' className="MyReactSelect">
+        <label htmlFor="">Couleur:</label>
+        <Select className='reactSelect' options={options} onChange={handleChange} value={selectedOption}  placeholder="Choisissez une Couleur" />
     </div>
 }

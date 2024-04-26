@@ -19,7 +19,7 @@ export default function AddFoundItem()
     const [imgHolder,setImgHolder] = useState('/media/imageHolder.png')
     const fileInputRef = useRef(null);
 
-    const [data,setData] = useState({category:"",subCategory:"",details:{objectName:"",objectLocation:"onPerson"}});
+    const [data,setData] = useState({category:"",subCategory:"",details:{Designation:"",objectLocation:"onPerson"},type:"found"});
 
     const [errorMessage,setErrorMessage] = useState("");
 
@@ -165,13 +165,13 @@ export default function AddFoundItem()
         if(dataToSend.category === '' || !('category' in dataToSend))
         {
             allowsendingData = false;
-            setErrorMessage("Veuillez sélectionner une catégorie")
+            setErrorMessage("Veuillez sélectionner un catégorie")
         }
 
         if(dataToSend.subCategory === '' || !('subCategory' in dataToSend) )
         {
             allowsendingData = false;
-            setErrorMessage("Veuillez sélectionner une catégorie")
+            setErrorMessage("Veuillez sélectionner un catégorie")
         }
         else if(dataToSend.subCategory !== 'Autre')
         {
@@ -181,21 +181,26 @@ export default function AddFoundItem()
         if(dataToSend.city === '' || !('city' in dataToSend))
         {
             allowsendingData = false;
-            console.log("Veuillez sélectionner une ville")
+            setErrorMessage("Veuillez sélectionner une ville")
+            
         
         }
 
         if(imgHolder === "/media/imageHolder.png")
         {
             allowsendingData = false;
-            console.log("Image validation")
+            
+            setErrorMessage("Veuillez ajouter une image")
+            
         }
 
         
-        if(dataToSend.details.objectName === "")
+        if(dataToSend.details.Designation === "")
         {
             allowsendingData = false;
-            console.log("name validation")
+         
+            setErrorMessage("Veuillez entrer une designation")
+            
         }
 
         if(allowsendingData)
@@ -266,13 +271,13 @@ export default function AddFoundItem()
         if(selectedOption === "onPerson" && e.target.name === 'phoneNumber')
         {
             setPhoneNumber(e.target.value);
-            // setData({...data,details:{...data.details,phoneNumber}})
+            
         }
 
         if(selectedOption === "onPerson" && e.target.name === 'email')
         {
             setEmail(e.target.value)
-            // setData({...data,details:{...data.details,email}})
+            
         }
     }
 
@@ -281,7 +286,7 @@ export default function AddFoundItem()
     return <form id={styles.addFoundItemForm} onSubmit={HandleSubmit} >
 
 
-        <p>{errorMessage}</p>
+       {errorMessage !== "" && <p className="alert alert-danger">{errorMessage}</p>}
        <div id={styles.addFoundItemContainer}>
             <div className="mainData">
                 <div id={styles.ImageContainer} onClick={HandleImageClick} >
@@ -294,7 +299,7 @@ export default function AddFoundItem()
 
                 <div className={styles.itemNameContainer}>
                     <label htmlFor="itemName">Designation</label>
-                    <input className={styles.AddingObjectDetailsInputs} type="text" name="" id="itemName" onChange={(e) => setData({...data,details:{...data.details,objectName:e.target.value}}) } />
+                    <input className={styles.AddingObjectDetailsInputs} type="text" name="" id="itemName" onChange={(e) => setData({...data,details:{...data.details,Designation:e.target.value}}) } />
                 </div>
 
                 
