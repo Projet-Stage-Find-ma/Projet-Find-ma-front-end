@@ -1,41 +1,60 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
 
-
-#detailsTitle
+#MainContainer
 {
-    text-align: center;
-    margin: 20px;
-    
+    display: flex;
+    height: 80vh;
+    flex-direction: column;
+    align-items: center;
+    padding: 10%;
 }
 
 
-
+.DataContainer
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+}
 .itemDetails
 {
    
     display: flex;
     justify-content: center;
-    padding: 10%;
-    min-height: 80vh;
+  
+    
     
    
     
 }
 
-.itemInformation
-{
-    margin-left: 20px;
-    padding: 10px;
 
+
+.itemDynamicData
+{
+   
+    width: 100%;
+    
 }
 
-#itemName
+#ItemDetailsName
 {
-    color: rgb(151, 204, 232); 
+   
+    color:  black;
+    background-color: rgb(202, 202, 202);
     font-family: 'Inter';
     font-weight: bolder;
+    padding: 5px;
+    border-radius: 10px;
     text-align: center;
+    overflow: hidden;
+    width: 500px;
+    height: auto;
 }
 
 .labels
@@ -45,9 +64,10 @@
     margin-right: 5px;
 }
 
-.buttonContainer
+.itemStaticData
 {
-    text-align: center;
+
+width: 100%;
 }
 
 .ActionButtons
@@ -77,6 +97,7 @@
     width: 100%;
     height: 100%;
     position: fixed;
+    left: 0;
     bottom: 1px;
     
 

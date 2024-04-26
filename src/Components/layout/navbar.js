@@ -13,9 +13,9 @@ export default function NavBar()
         <h1><Link className="LogoLink" to='/'>Find.ma</Link></h1>
 
         <div className="pagesLinks"> 
-            <Link  className="NavLinks" to="/phone">Téléphone</Link>               
-            <Link  className="NavLinks" to="/itemsList/lost">Objets perdus</Link>           
-            <Link  className="NavLinks" to="/itemsList/found">Objets Trouvés</Link>
+            <Link  className="NavLinks" to="/phone">Telephone</Link>               
+            <Link  className="NavLinks" to="/itemsList/lost">J'ai perdu</Link>           
+            <Link  className="NavLinks" to="/itemsList/found">J'ai trouvé</Link>
 
         </div>
 

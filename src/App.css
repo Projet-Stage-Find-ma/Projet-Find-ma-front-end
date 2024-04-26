@@ -36,3 +36,39 @@
     transform: rotate(360deg);
   }
 }
+
+#categorySelect
+{
+  display: flex;
+  
+  align-items: center;
+}
+
+.reactSelect
+{
+  
+  width: 250px;
+  margin-top: 10px;
+
+ 
+}
+
+#customCategory
+{
+  
+  background-color:rgba(217, 217, 217, 0.87) ;
+    color: black;
+    width: 250px ;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#citySelect
+{
+  display: flex;
+  align-items: center;
+}

@@ -15,7 +15,7 @@ import UserPhones from './Components/UserProfil/UserPhones';
 import UserObjects from './Components/UserProfil/UserObjects';
 import AddFoundItem from './Components/Items/AddItem/addFoundItem';
 import AddLostItem from './Components/Items/AddItem/addLostItem';
-import ItemDetails from './Components/Items/itemDetails';
+import ItemDetails from './Components/Items/ItemDetails/itemDetails';
 import ModifyPhone from './Components/Modifyphone';
 import Buyphone from './Components/Buyphone';
 

@@ -1,0 +1,49 @@
+.lostItemLocationContainer
+{
+    display: flex;
+    align-items: center;
+}
+
+#addLostItemMainContainer
+{
+    
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#ImageContainer
+{
+    
+    display: flex;
+    align-items: center;
+}
+
+#imageHolder
+{
+    background-color:rgba(151, 204, 232, 1) ;
+    border-radius: 5px;
+}
+
+.dataInputs
+{
+    background-color:rgba(217, 217, 217, 0.87) ;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    width: 250px;
+    padding: 5px;
+    margin-top: 7px;
+}
+
+#itemLosingDescirptionContainer
+{
+    display: flex;
+    
+}
+
+.lostItemCategorySelectionContainer
+{
+    display: flex;
+    flex-direction: column;
+}
