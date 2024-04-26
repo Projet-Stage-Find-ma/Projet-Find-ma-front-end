@@ -13,6 +13,7 @@ export default function UserPhones() {
     const[nameClass,setNameClass]=useState("")
     const navigate = useNavigate();
     const [code,setCode]=useState({});
+    
 
     useEffect(() => {
         const checkAuthentication = async () => {
@@ -28,7 +29,7 @@ export default function UserPhones() {
                     }
                 });
                 setTelephones(response.data.row || []); 
-                console.log(response.data.row);
+              
             } catch (error) {
                 console.error('Error fetching phones:', error);
                 navigate("/UserLogin");
@@ -45,32 +46,29 @@ export default function UserPhones() {
                 navigate("/UserLogin");
                 return;
             }
-
+    
             const response = await axios.delete(`http://localhost:3002/api/deletePhone/${phoneId}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
             });
-
-            if (response && response.data && response.data.message) {
-                setMessage(response.data.message); 
-                setNameClass("alert alert-success mb-3")
-                setTelephones(prevTelephones => prevTelephones.filter(phone => phone.id !== phoneId));
+    
+            if (response && response.data.message) {
+                
+                setTelephones(telephones.filter(t => t.id !== phoneId));
+                setMessage(response.data.message);
+                setNameClass("alert alert-success mb-3");
             } else {
                 console.error('Invalid response:', response);
             }
     
         } catch (error) {
             console.error('Error updating phone:', error);
-            if (error.response && error.response.data && error.response.data.message) {
-                setMessage(error.response.data.message); 
-                setNameClass("alert alert-danger mb-3")
-
-            } else {
-                setMessage('An unexpected error occurred.'); 
-                setNameClass("alert alert-danger mb-3")
-            }}
+            setMessage('An unexpected error occurred.');
+            setNameClass("alert alert-danger mb-3");
+        }
     }
+    
 
     async function sell(phoneID,ownerID) { 
         try {
@@ -111,27 +109,30 @@ export default function UserPhones() {
                     </tr>
                 </thead>
                 <tbody>
-                    {telephones.map((t, index) => (
-                        <tr key={index}>
-                            <td>IMEI1: {t.imei1} <br />{t.imei2 ?`IMEI2: ${t.imei2}` : ""}</td>
-                            <td>{t.serialNumber}</td>
-                            <td>Marque: {t.brand} <br />Model: {t.model} <br />Couleur: {t.color}  </td>
-                            
-                            <td>{t.status==="perdu" || t.status==="vole" ? <span style={{"color":"red","fontWeight":"bold","fontSize":"20px"}}> <FontAwesomeIcon icon={faTriangleExclamation} /> {t.status}</span> : <span style={{"color":"green","fontSize":"20px","fontWeight":"bold"}}>{t.status}</span>}</td>
-                            <td className='userPhoneButtons'>
-                                
-                            <Link to={`/Modifyphone/${t.id}`}>  <button id="modifierPhone" > Modifier </button></Link>
-                                <button id="supprimerPhone" onClick={() => {
-        if (window.confirm("Êtes-vous sûr de vouloir supprimer ce téléphone ?")) {
+                {telephones.map((t, index) => (
+  // Conditionally render the table row based on the 'deleted' property
+  !t.deleted && (
+    <tr key={index}>
+      <td>IMEI1: {t.imei1} <br />{t.imei2 ?`IMEI2: ${t.imei2}` : ""}</td>
+      <td>{t.serialNumber}</td>
+      <td>Marque: {t.brand} <br />Model: {t.model} <br />Couleur: {t.color}  </td>
+      <td>{t.status==="perdu" || t.status==="vole" ? <span style={{"color":"red","fontWeight":"bold","fontSize":"20px"}}> <FontAwesomeIcon icon={faTriangleExclamation} /> {t.status}</span> : <span style={{"color":"green","fontSize":"20px","fontWeight":"bold"}}>{t.status}</span>}</td>
+      <td className='userPhoneButtons'>
+        <Link to={`/Modifyphone/${t.id}`}>
+          <button id="modifierPhone"> Modifier </button>
+        </Link>
+        <button id="supprimerPhone" onClick={() => {
+          if (window.confirm("Êtes-vous sûr de vouloir supprimer ce téléphone ?")) {
             deletePhone(t.id);
-        }
-    }}>Supprimer</button>
-                                <button id="vendrePhone" onClick={()=>{sell(t.id,t.owner)}}>Vendre</button>
-                                {(code!=null && t.id === code.phoneID) && <input type="text" value={code.token} disabled/>}
-                               
-                            </td>
-                        </tr>
-                    ))}
+          }
+        }}>Supprimer</button>
+        <button id="vendrePhone" onClick={()=>{sell(t.id,t.owner)}}>Vendre</button>
+        {(code!=null && t.id === code.phoneID) && <input type="text" value={code.token} disabled/>}
+      </td>
+    </tr>
+  )
+))}
+
                 </tbody>
             </table>
             </div>

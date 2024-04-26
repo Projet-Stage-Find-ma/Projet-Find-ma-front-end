@@ -21,7 +21,13 @@ export default function Addphone() {
     });
     const [msg,setMessage]=useState("")
     const [nameClass,setNameClass]=useState("")
+    const [selectedOption, setSelectedOption] = useState(null);
+    const [options,setOptions] = useState([]);
 
+    const [selectedOption2, setSelectedOption2] = useState(null);
+  const [options2,setOptions2] = useState([]);
+
+  //authentification
     useEffect(() => {
         const checkAuthentication = async () => {
             try {
@@ -37,22 +43,59 @@ export default function Addphone() {
 
         checkAuthentication();
     }, [navigate]);
-    const [selectedOption, setSelectedOption] = useState(null);
-  const [options,setOptions] = useState([]);
-  useEffect(() =>
-{
-  axios.get("http://localhost:3002/api/data/parametres/phones")
-  .then(res => 
-  {
-    setOptions(res.data)
     
-  })
-  .catch(error => console.error(error));
-},[])
+    //la marque et modéles de téléphones
+  useEffect(() => {
+    axios.get("http://localhost:3002/api/data/parametres/phones")
+      .then(res => {
+       
+        const fetchedOptions = res.data;
+  
+       
+        const otherOption = fetchedOptions.find(option => option.label === "Autre");
+        const filteredOptions = fetchedOptions.filter(option => option.label !== "Autre");
+  
+      
+        if (otherOption) {
+          filteredOptions.push(otherOption);
+        }
+  
+        
+        setOptions(filteredOptions);
+       
+      })
+      .catch(error => console.error(error));
+  }, []);
 
+
+  //le couleur de téléphone
+  useEffect(() => {
+    axios.get("http://localhost:3002/api/data/parametres/colors")
+      .then(res => {
+       
+        const fetchedOptions = res.data;
+  
+       
+        const otherOption = fetchedOptions.find(option => option.label === "Autre");
+        const filteredOptions = fetchedOptions.filter(option => option.label !== "Autre");
+  
+      
+        if (otherOption) {
+          filteredOptions.push(otherOption);
+        }
+  
+        
+        setOptions2(filteredOptions);
+       
+      })
+      .catch(error => console.error(error));
+  }, []);
+  
 
     async function handleSubmit(e) {
+        console.log(values)
         e.preventDefault();
+       
         try {
             const token = localStorage.getItem('token');
             
@@ -92,6 +135,8 @@ export default function Addphone() {
             statut: ""
         });
     }
+
+    //changement de marque
     const handleChange2 = (selectedOption) => {
 
         setSelectedOption(selectedOption);
@@ -100,11 +145,26 @@ export default function Addphone() {
           const selectedValue = selectedOption.label;
           const selectedGroup = options.find(group => group.options.some(opt => opt.value === selectedOption.value));
           const groupLabel = selectedGroup ? selectedGroup.label : '';
-         
+         if(groupLabel!=="Autre")
           setValues({...values,"marque":groupLabel,"model":selectedValue})
-          console.log("values", values)
+
+          
         }
       };
+//changement de couleur
+const handleChange3 = (selectedOption) => {
+
+    setSelectedOption2(selectedOption);
+    
+    if (selectedOption) {
+      const selectedValue = selectedOption.label;
+      
+     if(selectedOption.value!=="Autre")
+      setValues({...values,"couleur":selectedValue})
+     
+     
+    }
+  };
 
     return (
         <div className="globalContainerPhone">
@@ -161,12 +221,55 @@ export default function Addphone() {
                             />
 
                             </div>
+                            
                                                 
                         </div>
-                        
+                        <div className="label-input-container2">
+                        {( selectedOption  && selectedOption.label==="Autre" ) && <><label htmlFor="">Entrer la marque</label><input type="text" name="marque" placeholder="votre marque" onChange={handleChange}/><input type="text" name="model" placeholder="votre model" onChange={handleChange}/></>}
+                        </div>
+
+                        {/* couleur */}
                         <div className="label-input-container">
-                            <label htmlFor="couleur">Couleur:</label>
-                            <input type="text" id="couleur" name="couleur" onChange={handleChange}/>
+                            <label htmlFor="marque">Couleur :</label>
+                            <div style={{ width: '100%' }} id="mySelectPhones">
+                            <Select
+                            value={selectedOption2}
+                            onChange={handleChange3}
+                            options={options2}
+                            placeholder="Choisissez la couleur de téléphone"
+                            styles={{
+                                control: (provided) => ({
+                                ...provided,
+                                backgroundColor: '#97CCE8', 
+                                color: 'black', 
+                                
+                                }),
+                                indicatorSeparator: () => ({
+                                display: 'none', 
+                                }),
+                                dropdownIndicator: (provided) => ({
+                                ...provided,
+                                color: 'black', 
+                                }),
+                                placeholder: (provided) => ({
+                                ...provided,
+                                color: 'black',
+                                }),
+                                groupHeading: (provided) => ({
+                                    ...provided,
+                                    fontWeight: 'bold', 
+                                    fontSize: '20px',
+                                    color:"#97CCE8"
+                                  }),
+                            }}
+                            />
+
+                            </div>
+                            
+                                                
+                        </div>
+                        <div className="label-input-container3">
+                        {( selectedOption2  && selectedOption2.label==="Autre" ) && <><label htmlFor="">Entrer une couleur</label><input type="text" name="couleur" placeholder="votre couleur" onChange={handleChange}/></>}
                         </div>
                     </div>
                     <div className="part2Phone">

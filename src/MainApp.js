@@ -25,7 +25,6 @@ import AddItem from './Components/Items/AddItem/addItem';
 import VerifyIMEI from './Components/verifyIMEI';
 
 
-
 export default function MainApp(props)
 {
     const [isUserLoggedIn,setIsUserLoggedIn] = useState(false);
@@ -60,6 +59,7 @@ export default function MainApp(props)
     <Routes>
       <Route path='/' element= {<Home/>} ></Route>
       <Route path='/phone' element= {<Phone />} ></Route>
+      
 
       <Route path='/itemsList/:type' element= {<ItemsSearchList />} ></Route>
       <Route path='/item/:id' element={<ItemDetails/>}></Route>
