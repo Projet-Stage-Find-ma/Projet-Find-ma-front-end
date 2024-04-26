@@ -23,6 +23,7 @@ import Addphone from './Components/Addphone';
 import { useEffect, useState } from 'react';
 import AddItem from './Components/Items/AddItem/addItem';
 import VerifyIMEI from './Components/verifyIMEI';
+import ModifyLostItem from './Components/UserProfil/modifyObject';
 
 
 
@@ -72,9 +73,8 @@ export default function MainApp(props)
 
       <Route path='/UserObjects' element= {<UserObjects />} ></Route>
       <Route path='/addphone' element= {<Addphone />} ></Route>
-      <Route path='/addObject/*' element={<AddItem/>}>
-            
-      </Route>
+      <Route path='/addObject/*' element={<AddItem/>}></Route>
+      <Route path='/ModifyObject/:id' element = {<ModifyLostItem/>} />
 
 
     </Routes>

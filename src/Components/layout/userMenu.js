@@ -27,7 +27,7 @@ export default function UserMenu()
                 });
                 
                setUser(response.data.row[0]);
-               console.log(user)
+              
               
             } catch (error) {
                 console.error('Error fetching user:', error);

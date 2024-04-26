@@ -22,17 +22,30 @@ export default function CategoryDropDown(props)
         .then(res => 
         {
             setOptions(res.data)
+
+            
+            
             
         })
+        .then(() =>
+      {
+        if(props.modifyData)
+            {
+              
+              console.log(props.modifyData)
+              console.log(props.modifyData.subCategory)
+
+            }
+      })
         .catch(error => console.error(error));
     },[])
-
+   
     const handleChange = (selectedOption) => {
-
+      
         setSelectedOption(selectedOption);
         
         if (selectedOption) {
-
+          
           if(selectedOption.label === 'Autre')
           {
             setDisplayCustomCategory(true);
