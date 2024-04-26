@@ -3,10 +3,32 @@
     display: flex;
   }
   
+
+  :root {
+    --button-bg-color: #97CCE8;
+    --button-text-color: white;
+    --input-bg-color: #CECECE;
+  }
+  
+  .AjoutUser {
+    float: right;
+    margin-right: 10px;
+    background-color: var(--button-bg-color);
+    font-weight: bold;
+    font-size: 12px;
+    padding: 0.2px 20px;
+    border: none;
+    color:white;
+   margin-bottom: 10px;
+  
+   
+  }
   .PhonesContainer {
     flex: 1;
     margin-top: 5%;
     width: 90%;
+    display: flex;
+    flex-direction: column;
   }
   
   .titlePhone {
@@ -17,6 +39,7 @@
     padding: 10px;
     background-color: #97CCE8;
     font-size: 30px;
+   
   }
   
   .Tablephones {

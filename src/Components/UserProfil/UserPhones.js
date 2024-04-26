@@ -5,6 +5,7 @@ import './UserPhones.css';
 import { Link } from 'react-router-dom';
 import SideNavBar from '../layout/sideNav';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 
 export default function UserPhones() {
@@ -96,7 +97,17 @@ export default function UserPhones() {
         <div className='userPhone'>
         <SideNavBar/>
         <div className='PhonesContainer'>
+            <div>
+            <button className="AjoutUser" >
+                <Link to="/addphone" style={{"color":"white"}}> <FontAwesomeIcon icon={faCirclePlus}/> Ajouter mon IMEI</Link>
+            </button>
+            <button className="AjoutUser">
+                <Link to="/verifyIMEI" style={{"color":"white"}}> <FontAwesomeIcon icon={faCirclePlus}/> Acheter un téléphone</Link>
+            </button>
+            </div>
+            <div>
             {msg && <p className={nameClass} style={{"textAlign":"center"}}>{msg}</p>}
+            
             <h1 className='titlePhone'>Mes Téléphones: </h1>
             <table  className='Tablephones'>
                 <thead>
@@ -110,8 +121,8 @@ export default function UserPhones() {
                 </thead>
                 <tbody>
                 {telephones.map((t, index) => (
-  // Conditionally render the table row based on the 'deleted' property
-  !t.deleted && (
+  
+ 
     <tr key={index}>
       <td>IMEI1: {t.imei1} <br />{t.imei2 ?`IMEI2: ${t.imei2}` : ""}</td>
       <td>{t.serialNumber}</td>
@@ -130,11 +141,12 @@ export default function UserPhones() {
         {(code!=null && t.id === code.phoneID) && <input type="text" value={code.token} disabled/>}
       </td>
     </tr>
-  )
+  
 ))}
 
                 </tbody>
             </table>
+            </div>
             </div>
         </div>
     
